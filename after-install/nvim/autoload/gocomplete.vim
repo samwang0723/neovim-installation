@@ -1,0 +1,1 @@
+/Users/sam.wang/.local/share/nvim/site/plugged/gocode/nvim/autoload/gocomplete.vim
