@@ -9,41 +9,32 @@ vim.cmd [[packadd packer.nvim]]
 vim.cmd [[packadd vimball]]
 vim.g.go_fmt_autosave = 1
 
+vim.cmd [[set shiftwidth=0]]
+vim.cmd [[set tabstop=4]]
+vim.cmd [[set softtabstop=-1]]
+vim.cmd [[set expandtab]]
+vim.cmd [[set autoindent]]
+vim.cmd [[set smartindent]]
+
 return require('packer').startup(function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-
---    use {
---        'sainnhe/gruvbox-material',
---        setup = function()
---            vim.g.gruvbox_material_background = 'soft'
---        end,
---        config = function()
---            vim.cmd[[colorscheme gruvbox-material]]
---        end
---    }
-
-	use {
-		'rakr/vim-one',
-		setup = function()
-			vim.g.one_allow_italics = 1
-			vim.g.airline_theme='one'
-		end,
-		config = function()
-			vim.cmd[[colorscheme one]]
-			vim.cmd[[set background=dark]]
-			vim.cmd[[set termguicolors]]
-		end
-	}
+    use 'itchyny/lightline.vim'
+    use 'ryanoasis/vim-devicons'
+    use 'Yggdroot/indentLine'
+    use 'jiangmiao/auto-pairs'
 
     use {
-        'Yggdroot/indentLine',
-        setup = function()
-            vim.g.indentLine_defaultGroup = 'SpecialKey'
-            vim.g.indentLine_char = '┆'
-        end,
-        config = function()
-        end
+	    'rakr/vim-one',
+	    setup = function()
+	        vim.g.one_allow_italics = 1
+	        vim.g.airline_theme='one'
+	    end,
+	    config = function()
+	        vim.cmd[[colorscheme one]]
+	        vim.cmd[[set background=dark]]
+	        vim.cmd[[set termguicolors]]
+	    end
     }
 
     use {
@@ -59,6 +50,16 @@ return require('packer').startup(function()
         ft = 'go',
         setup = function()
             vim.g.go_diagnostics_enabled = 1
+            vim.g.go_highlight_types = 1
+	        vim.g.go_highlight_fields = 1
+            vim.g.go_highlight_functions = 1
+            vim.g.go_highlight_function_calls = 1
+            vim.g.go_highlight_operators = 1
+            vim.g.go_highlight_extra_types = 1
+            vim.g.go_highlight_build_constraints = 1
+            vim.g.go_highlight_generate_tags = 1
+            vim.g.go_gocode_propose_source = 0
+            vim.g.go_template_autocreate = 0
             local t = function(str)
                 return vim.api.nvim_replace_termcodes(str, true, true, true)
             end
@@ -113,7 +114,7 @@ return require('packer').startup(function()
             -- Enable virtual text, override spacing to 2
             virtual_text = {
                 spacing = 2,
-                prefix = '<',
+                --prefix = '',
             },
             -- Use a function to dynamically turn signs off
             -- and on, using buffer local variables
@@ -147,39 +148,5 @@ return require('packer').startup(function()
             vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>Telescope find_files<cr>", {noremap = true})
         end
     }
-
-    use {
-        'preservim/tagbar',
-        setup = function()
-            vim.g.tagbar_type_go = {
-                ctagstype = 'go',
-                kinds = {
-                    'p:package',
-                    'i:imports:1',
-                    'c:constants',
-                    'v:variables',
-                    't:types',
-                    'n:interfaces',
-                    'w:fields',
-                    'e:embedded',
-                    'm:methods',
-                    'r:constructor',
-                    'f:functions'
-                },
-                sro = '.',
-                kind2scope = {
-                    t = 'ctype',
-                    n = 'ntype',
-                },
-                scope2kind = {
-                    ctype = 't',
-                    ntype = 'n'
-                },
-                ctagsbin  = 'gotags',
-                ctagsargs = '-sort -silent'
-            }
-            vim.api.nvim_set_keymap("n", "<C-t>", "<cmd>TagbarToggle<cr>" ,{silent = true, noremap = true})
-        end
-}
 end)
 
