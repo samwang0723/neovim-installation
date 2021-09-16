@@ -23,6 +23,17 @@ return require('packer').startup(function()
     use 'ryanoasis/vim-devicons'
     use 'Yggdroot/indentLine'
     use 'jiangmiao/auto-pairs'
+    use 'Xuyuanp/nerdtree-git-plugin'
+    use 'airblade/vim-gitgutter'
+    use 'itchyny/vim-gitbranch'
+    use 'andrewstuart/vim-kubernetes'
+--    use 'ekalinin/Dockerfile.vim'
+    use {
+        'hashivim/vim-terraform',
+        setup = function()
+            vim.g.terraform_fmt_on_save = 1
+        end
+    }
 
     use {
 	    'rakr/vim-one',
@@ -40,8 +51,14 @@ return require('packer').startup(function()
     use {
         'preservim/nerdtree',
         setup = function()
-            vim.api.nvim_set_keymap("n", "<C-d>", "<cmd>NERDTreeToggle<cr>" ,{silent = true, noremap = true})
-        end
+            vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>NERDTreeToggle<cr>" ,{silent = true, noremap = true})
+        end,
+        config = function()
+            vim.g.NERDTreeDirArrowExpandable = '├'
+            vim.g.NERDTreeDirArrowCollapsible = '└'
+            vim.g.NERDTreeMapActivateNode = '<tab>'
+            vim.cmd[[set mouse=a]]
+    	end
     }
 
     use {
