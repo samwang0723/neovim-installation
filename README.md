@@ -5,6 +5,13 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
+## CTags installation
+
+```
+brew install gotags
+brew install ctags-exuberant
+```
+
 ## Neovim Configuration
 
 * Create folder under ~/.config/nvim to store init.vim and lua/ Packer configuration. 
