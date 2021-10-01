@@ -27,6 +27,18 @@ return require('packer').startup(function()
     use 'airblade/vim-gitgutter'
     use 'itchyny/vim-gitbranch'
     use 'andrewstuart/vim-kubernetes'
+    use {
+        'alvan/vim-closetag',
+        setup = function()
+            vim.g.closetag_filenames = '*.html,*.xhtml,*.phtml,*.tpl'
+            vim.g.closetag_xhtml_filenames = '*.xhtml,*.jsx'
+            vim.g.closetag_filetypes = 'html,xhtml,phtml'
+            vim.g.closetag_xhtml_filetypes = 'xhtml,jsx'
+            vim.g.closetag_emptyTags_caseSensitive = 1
+            vim.g.closetag_shortcut = '>'
+            vim.g.closetag_close_shortcut = '<leader>>'
+        end
+    }
 --    use 'ekalinin/Dockerfile.vim'
     use {
         'hashivim/vim-terraform',
