@@ -8,6 +8,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 vim.cmd [[packadd vimball]]
 vim.g.go_fmt_autosave = 1
+vim.g.go_def_mode = 'gopls'
 
 vim.cmd [[set shiftwidth=0]]
 vim.cmd [[set tabstop=4]]
@@ -25,8 +26,10 @@ return require('packer').startup(function()
     use 'jiangmiao/auto-pairs'
     use 'Xuyuanp/nerdtree-git-plugin'
     use 'airblade/vim-gitgutter'
+    use 'tpope/vim-fugitive'
     use 'itchyny/vim-gitbranch'
     use 'andrewstuart/vim-kubernetes'
+    use 'tsandall/vim-rego'
     use {
         'APZelos/blamer.nvim',
         setup = function()
@@ -174,6 +177,7 @@ return require('packer').startup(function()
         end
     }
 
+    use 'glepnir/lspsaga.nvim'
     use {
         'neovim/nvim-lspconfig',
         config = function()

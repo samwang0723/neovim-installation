@@ -1,8 +1,4 @@
 lua require('plugins')
-"lua require("lsp_config")
-
-"autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
-"autocmd BufWritePre *.go lua goimports(1000)
 
 set updatetime=10 " Short updatetime so the CursorHold event fires fairly often
 function! HighlightWordUnderCursor()
