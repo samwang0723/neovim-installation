@@ -1,6 +1,6 @@
 lua << EOF
 local saga = require 'lspsaga'
-saga.init_lsp_saga()
+saga.init_lsp_saga() 
 EOF
 
 " lsp provider to find the cursor word definition and reference
@@ -32,7 +32,7 @@ nnoremap <silent>gr :Lspsaga rename<CR>
 " close rename win use <C-c> in insert mode or `q` in noremal mode or `:q`
 
 " preview definition
-nnoremap <silent> gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
+nnoremap <silent> pd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
 " or use command
-nnoremap <silent> gd :Lspsaga preview_definition<CR>
+nnoremap <silent> pd :Lspsaga preview_definition<CR>
 

@@ -30,6 +30,7 @@ return require('packer').startup(function()
     use 'itchyny/vim-gitbranch'
     use 'andrewstuart/vim-kubernetes'
     use 'tsandall/vim-rego'
+    use 'folke/lsp-colors.nvim'
     use {
         'APZelos/blamer.nvim',
         setup = function()
