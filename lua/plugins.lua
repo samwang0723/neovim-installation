@@ -7,8 +7,6 @@ end
 
 vim.cmd [[packadd packer.nvim]]
 vim.cmd [[packadd vimball]]
-vim.g.go_fmt_autosave = 1
-vim.g.go_def_mode = 'gopls'
 
 vim.cmd [[set shiftwidth=0]]
 vim.cmd [[set tabstop=4]]
@@ -31,6 +29,8 @@ return require('packer').startup(function()
     use 'andrewstuart/vim-kubernetes'
     use 'tsandall/vim-rego'
     use 'folke/lsp-colors.nvim'
+    use 'tami5/lspsaga.nvim'
+
     use {
         'APZelos/blamer.nvim',
         setup = function()
@@ -124,7 +124,7 @@ return require('packer').startup(function()
         setup = function()
             vim.g.go_diagnostics_enabled = 1
             vim.g.go_highlight_types = 1
-	        vim.g.go_highlight_fields = 1
+            vim.g.go_highlight_fields = 1
             vim.g.go_highlight_functions = 1
             vim.g.go_highlight_function_calls = 1
             vim.g.go_highlight_operators = 1
@@ -133,6 +133,9 @@ return require('packer').startup(function()
             vim.g.go_highlight_generate_tags = 1
             vim.g.go_gocode_propose_source = 0
             vim.g.go_template_autocreate = 0
+            vim.g.go_fmt_autosave = 1
+            vim.g.go_def_mode = 'gopls'
+            vim.g.go_info_mode = 'gopls'
             local t = function(str)
                 return vim.api.nvim_replace_termcodes(str, true, true, true)
             end
@@ -178,35 +181,33 @@ return require('packer').startup(function()
         end
     }
 
-    use 'glepnir/lspsaga.nvim'
     use {
         'neovim/nvim-lspconfig',
         config = function()
-        diagnostic_config = {
-            -- Enable underline, use default values
-            underline = true,
-            -- Enable virtual text, override spacing to 2
-            virtual_text = {
-                spacing = 2,
-                --prefix = '',
-            },
-            -- Use a function to dynamically turn signs off
-            -- and on, using buffer local variables
-            signs = function(bufnr, client_id)
-                local ok, result = pcall(vim.api.nvim_buf_get_var, bufnr, 'show_signs')
-                -- No buffer local variable set, so just enable by default
-                if not ok then
-                    return true
-                end
+            diagnostic_config = {
+                -- Enable underline, use default values
+                underline = true,
+                -- Enable virtual text, override spacing to 2
+                virtual_text = {
+                    spacing = 2,
+                    --prefix = '',
+                },
+                -- Use a function to dynamically turn signs off
+                -- and on, using buffer local variables
+                signs = function(bufnr, client_id)
+                    local ok, result = pcall(vim.api.nvim_buf_get_var, bufnr, 'show_signs')
+                    -- No buffer local variable set, so just enable by default
+                    if not ok then
+                        return true
+                    end
+    
+                    return result
+                end,
+                -- Disable a feature
+                update_in_insert = false,
+            }
 
-                return result
-            end,
-            -- Disable a feature
-            update_in_insert = false,
-        }
-
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics, diagnostic_config)
+            vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, diagnostic_config)
             vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',{silent = true, noremap = true})
             vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',{silent = true, noremap = true})
             require('lspconfig').gopls.setup{}

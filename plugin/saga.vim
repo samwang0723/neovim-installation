@@ -32,7 +32,19 @@ nnoremap <silent>gr :Lspsaga rename<CR>
 " close rename win use <C-c> in insert mode or `q` in noremal mode or `:q`
 
 " preview definition
-nnoremap <silent> pd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
+nnoremap <silent> pd <cmd>lua require('lspsaga.provider').preview_definition()<CR>
 " or use command
 nnoremap <silent> pd :Lspsaga preview_definition<CR>
 
+" show
+nnoremap <silent><leader>cd <cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>
+nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
+" only show diagnostic if cursor is over the area
+nnoremap <silent><leader>cc <cmd>lua require('lspsaga.diagnostic').show_cursor_diagnostics()<CR>
+
+" jump diagnostic
+nnoremap <silent> [e <cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>
+nnoremap <silent> ]e <cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>
+" or use command
+nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
