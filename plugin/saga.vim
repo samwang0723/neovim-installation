@@ -26,9 +26,9 @@ nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_sag
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 
 " rename
-nnoremap <silent>gr <cmd>lua require('lspsaga.rename').rename()<CR>
+nnoremap <silent>rn <cmd>lua require('lspsaga.rename').rename()<CR>
 " or command
-nnoremap <silent>gr :Lspsaga rename<CR>
+nnoremap <silent>rn :Lspsaga rename<CR>
 " close rename win use <C-c> in insert mode or `q` in noremal mode or `:q`
 
 " preview definition
