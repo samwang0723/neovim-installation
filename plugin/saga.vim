@@ -48,3 +48,16 @@ nnoremap <silent> ]e <cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_
 " or use command
 nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
+
+" show signature help
+nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
+" or command
+nnoremap <silent> gs :Lspsaga signature_help<CR>
+
+" float terminal also you can pass the cli command in open_float_terminal function
+nnoremap <silent> <F7> <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR> 
+" or open_float_terminal('lazygit')<CR>
+tnoremap <silent> <F6> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
+" or use command
+nnoremap <silent> <F7> :Lspsaga open_floaterm<CR>
+tnoremap <silent> <F6> <C-\><C-n>:Lspsaga close_floaterm<CR>i
