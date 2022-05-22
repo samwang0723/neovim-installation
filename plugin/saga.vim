@@ -60,4 +60,13 @@ nnoremap <silent> <F7> <cmd>lua require('lspsaga.floaterm').open_float_terminal(
 tnoremap <silent> <F6> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
 " or use command
 nnoremap <silent> <F7> :Lspsaga open_floaterm<CR>
-tnoremap <silent> <F6> <C-\><C-n>:Lspsaga close_floaterm<CR>i
+tnoremap <silent> <F6> <C-\><C-n>:Lspsaga close_floaterm<CR>
+
+nnoremap <silent> <leader>c <Plug>(go-coverage-toggle)<CR>
+nnoremap <silent> <leader>t <Plug>(go-test)<CR>
+nnoremap <silent> <leader>tt <Plug>(go-test-func)<CR>
+nnoremap <silent> <leader>fs :GoFillStruct <CR>
+
+" diffview
+nnoremap <silent> <leader>do :DiffviewOpen <CR>
+nnoremap <silent> <leader>dc :DiffviewClose <CR>

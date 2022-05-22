@@ -30,7 +30,7 @@ function goimports(timeoutms)
       local result = v.result
       if result and result[1] then
         local edit = result[1].edit
-        vim.lsp.util.apply_workspace_edit(edit)
+        vim.lsp.util.apply_workspace_edit(edit, 'utf-16')
       end
     end
     -- Always do formating
@@ -52,6 +52,7 @@ return require('packer').startup(function()
     use 'tsandall/vim-rego'
     use 'folke/lsp-colors.nvim'
     use 'tami5/lspsaga.nvim'
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
     use {
         'romgrk/barbar.nvim',
         requires = {'kyazdani42/nvim-web-devicons'}
@@ -209,8 +210,9 @@ return require('packer').startup(function()
               end
             end
 
-            util = require('lspconfig/util')
-            require('lspconfig').gopls.setup {
+            local util = require('lspconfig/util')
+            local lsp = require('lspconfig')
+            lsp.gopls.setup {
                 root_dir = function(fname) 
                     local root = fname:match ".*/github.com/samwang0723/.-/"
                     return root ~= nil and root or util.root_pattern(".git", "go.mod")(fname)
@@ -223,9 +225,6 @@ return require('packer').startup(function()
                 },
                 settings = {
                   gopls = {
-                    analyses = {
-                      unusedparams = true,
-                    },
                     completeUnimported= true,
                     staticcheck= false,
                     usePlaceholders= true,
@@ -248,6 +247,8 @@ return require('packer').startup(function()
                       nilness= true,
                       shadow= true,
                       unusedwrite= true,
+                      unusedparams = true,
+                      fillstruct = true,
                     },
                     annotations= {
                       escape= true,
@@ -260,6 +261,14 @@ return require('packer').startup(function()
                     experimentalWorkspaceModule= true,
                     verboseOutput= true,
                   },
+                },
+            }
+            -- Ruby on Rails LSP
+            lsp.solargraph.setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                flags = {
+                  debounce_text_changes = 150,
                 },
             }
         end
