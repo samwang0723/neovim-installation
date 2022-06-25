@@ -240,7 +240,7 @@ return require('packer').startup(function(use)
       local lsp = require('lspconfig')
       lsp.gopls.setup {
         root_dir = function(fname)
-          local root = fname:match ".*/github.com/monacohq/.-/"
+          local root = fname:match ".*/github.com/samwang0723/.-/"
           return root ~= nil and root or util.root_pattern(".git", "go.mod")(fname)
         end,
         cmd = { "gopls", "-v", "-rpc.trace", "serve", "--debug=localhost:6060" },
