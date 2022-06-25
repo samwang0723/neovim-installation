@@ -1,10 +1,12 @@
 lua << EOF
 local saga = require 'lspsaga'
-saga.init_lsp_saga() 
+saga.init_lsp_saga{
+    debug = true,
+}
 EOF
 
 " lsp provider to find the cursor word definition and reference
-nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+nnoremap <silent> gh <cmd>lua require('lspsaga.provider').lsp_finder()<CR>
 " or use command LspSagaFinder
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 

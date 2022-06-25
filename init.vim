@@ -39,6 +39,7 @@ set secure
 set autoread
 set termguicolors
 set list lcs=tab:\¦\ 
+set wildmode=longest,list,full
 
 " Save whenever switching windows or leaving vim. This is useful when running
 " the tests inside vim without having to save all files first.
@@ -63,6 +64,17 @@ autocmd FileType py setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType rb setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
+" support css word with -
+autocmd FileType css,scss,slim,html,eruby,coffee,javascript,wxml setlocal iskeyword+=-
+autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+
+autocmd BufNewFile,BufRead *.slim set filetype=slim
+autocmd BufNewFile,BufRead *.es6 set filetype=javascript
+autocmd BufNewFile,BufRead *.json.jb set filetype=ruby
+autocmd BufNewFile,BufRead *.wxml set filetype=xml
+autocmd BufNewFile,BufRead *.wxss set filetype=css
 
 " lightline
 set laststatus=2
@@ -114,6 +126,18 @@ else
   let g:gitgutter_sign_column_always = 1
 endif
 
-autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
+" ruby on rails
+" gem install gem-ctags
+" gem ctags
+let g:rails_ctags_arguments = ['--languages=ruby --exclude=.git --exclude=log .']
+let g:vim_markdown_folding_disabled = 1
+
+" prettier
+let g:prettier#autoformat = 0
+let g:prettier#config_file = '~/.prettierrc.yml'
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.rb PrettierAsync
+
+" auto-formatting
+autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)
 autocmd BufWritePre *.go.in lua vim.lsp.buf.formatting_sync(nil, 1000)
 autocmd BufWritePre *.go lua goimports(3000)
