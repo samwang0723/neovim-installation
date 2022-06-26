@@ -51,7 +51,7 @@ return require('packer').startup(function(use)
   use 'andrewstuart/vim-kubernetes'
   use 'tsandall/vim-rego'
   use 'folke/lsp-colors.nvim'
-  use { 'tami5/lspsaga.nvim', branch = 'nvim6.0' }
+  use 'tami5/lspsaga.nvim'
   -- markdown
   use 'godlygeek/tabular'
   use 'plasticboy/vim-markdown'
@@ -215,14 +215,14 @@ return require('packer').startup(function(use)
         buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 
         -- Set some keybinds conditional on server capabilities
-        if client.resolved_capabilities.document_formatting then
+        if client.server_capabilities.document_formatting then
           buf_set_keymap("n", "ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-        elseif client.resolved_capabilities.document_range_formatting then
+        elseif client.server_capabilities.document_range_formatting then
           buf_set_keymap("n", "ff", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
         end
 
         -- Set autocommands conditional on server_capabilities
-        if client.resolved_capabilities.document_highlight then
+        if client.server_capabilities.document_highlight then
           vim.api.nvim_exec([[
                   hi LspReferenceRead cterm=bold ctermbg=DarkMagenta guibg=LightYellow
                   hi LspReferenceText cterm=bold ctermbg=DarkMagenta guibg=LightYellow
@@ -291,7 +291,7 @@ return require('packer').startup(function(use)
       -- Ruby on Rails LSP
       lsp.solargraph.setup {
         root_dir = function(fname)
-          local root = fname:match ".*/github.com/monacohq/.-/"
+          local root = fname:match ".*/github.com/samwang0723/.-/"
           return root ~= nil and root or util.root_pattern(".git", "Gemfile")(fname)
         end,
         commandPath = '/Users/samwang/.asdf/shims/solargraph',
