@@ -52,9 +52,6 @@ return require('packer').startup(function(use)
   use 'tsandall/vim-rego'
   use 'folke/lsp-colors.nvim'
   use 'tami5/lspsaga.nvim'
-  -- markdown
-  use 'godlygeek/tabular'
-  use 'plasticboy/vim-markdown'
   -- ruby on rails
   use 'vim-ruby/vim-ruby'
   use 'tpope/vim-rails'
@@ -365,6 +362,8 @@ return require('packer').startup(function(use)
           },
         },
       }
+      -- markdown
+      lsp.marksman.setup {}
     end
   }
 

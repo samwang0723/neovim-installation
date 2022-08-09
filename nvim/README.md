@@ -14,11 +14,13 @@ brew install ctags-exuberant
 
 ## Neovim Configuration
 
-* Create folder under ~/.config/nvim to store init.vim and lua/ Packer configuration. 
-* Launch any file using nvim and run `PackerSync`
+-   Create folder under ~/.config/nvim to store init.vim and lua/ Packer configuration.
+-   Launch any file using nvim and run `PackerSync`
 
 ### Packer
-Packer  https://github.com/wbthomason/packer.nvim
+
+Packer https://github.com/wbthomason/packer.nvim
+
 ```
 -- You must run this or `PackerSync` whenever you make changes to your plugin configuration
 -- Regenerate compiled loader file
@@ -36,6 +38,7 @@ Packer  https://github.com/wbthomason/packer.nvim
 ```
 
 ### Replace/Modify multi-line strings
+
 ```
 %s/{source}/{replacement}/p
 ---
@@ -47,12 +50,16 @@ type // (or # or " or ...)
 you will see the modification appearing only on the first line
 IMPORTANT LAST STEP: type Esc key
 ```
+
 ### Split window
+
 ```
 :vsplit
 Ctrl+w - go to the window above the selected window
 ```
+
 ### Nvim-lspconfig debugging
+
 ```
 :messages
 :lua print(vim.inspect(vim.lsp.buf_get_clients()))
@@ -60,6 +67,7 @@ Ctrl+w - go to the window above the selected window
 ```
 
 ### Useful keybindings
+
 ```
 \fg - live grep
 \ff - find files
@@ -83,7 +91,22 @@ ff - formatting
 <tab> - autocomplete
 Ctrl+o - godef back
 ---
-press <v> to go to the “Visual Mode” of VIM and select the substring and press <y>. The text should be copied. 
+press <v> to go to the “Visual Mode” of VIM and select the substring and press <y>. The text should be copied.
 press <p> to paste
 press <dd> to delete the selected range
 ```
+
+## Install Language Server
+
+### Markdown
+
+1. Download from https://github.com/artempyanykh/marksman/releases
+2. Move the binary file into /usr/local/bin
+
+```
+$ mv marksman-macos marksman && chmod +x marksman
+```
+
+### Lua
+
+1. Follow the instruction https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
