@@ -109,4 +109,28 @@ $ mv marksman-macos marksman && chmod +x marksman
 
 ### Lua
 
-1. Follow the instruction https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
+
+### Solargraph (Ruby on Rails)
+
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#solargraph
+
+### tsserver
+
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
+
+### dockerls
+
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#dockerls
+
+### html
+
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#html
+
+### cssls
+
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#cssls
+
+### gopls
+
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
