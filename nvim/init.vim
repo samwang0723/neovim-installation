@@ -138,6 +138,6 @@ let g:prettier#config_file = '~/.prettierrc.yml'
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.rb PrettierAsync
 
 " auto-formatting
-autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)
-autocmd BufWritePre *.go.in lua vim.lsp.buf.formatting_sync(nil, 1000)
-autocmd BufWritePre *.go lua goimports(3000)
+autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
+autocmd BufWritePre *.go.in lua vim.lsp.buf.formatting_sync()
+autocmd BufWritePre *.go lua goimports(1000)

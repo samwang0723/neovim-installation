@@ -34,7 +34,7 @@ function goimports(timeoutms)
     end
   end
   -- Always do formating
-  vim.lsp.buf.formatting()
+  vim.lsp.buf.formatting_sync()
 end
 
 return require('packer').startup(function(use)
