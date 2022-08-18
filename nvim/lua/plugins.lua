@@ -285,6 +285,13 @@ return require('packer').startup(function(use)
           },
         },
       }
+      lsp.golangci_lint_ls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = {
+          debounce_text_changes = 150,
+        },
+      }
       -- Ruby on Rails LSP
       lsp.solargraph.setup {
         root_dir = function(fname)
