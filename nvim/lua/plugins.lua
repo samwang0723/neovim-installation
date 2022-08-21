@@ -282,6 +282,7 @@ return require('packer').startup(function(use)
             expandWorkspaceToModule = false,
             experimentalWorkspaceModule = true,
             verboseOutput = true,
+            gofumpt = true,
           },
         },
       }

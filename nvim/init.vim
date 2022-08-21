@@ -141,3 +141,10 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 autocmd BufWritePre *.go.in lua vim.lsp.buf.formatting_sync()
 autocmd BufWritePre *.go lua goimports(1000)
+
+fun! GoFumpt()
+  :silent !gofumpt -w %
+  :edit
+endfun
+
+autocmd BufWritePost *.go call GoFumpt()
