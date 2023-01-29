@@ -148,3 +148,8 @@ fun! GoFumpt()
 endfun
 
 autocmd BufWritePost *.go call GoFumpt()
+
+" avoid Tab autocomplete conflict with copilot accept
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
