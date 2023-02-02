@@ -65,8 +65,8 @@ nnoremap <silent> <F7> :Lspsaga open_floaterm<CR>
 tnoremap <silent> <F6> <C-\><C-n>:Lspsaga close_floaterm<CR>
 
 nnoremap <silent> <leader>c <Plug>(go-coverage-toggle)<CR>
-nnoremap <silent> <leader>t <Plug>(go-test)<CR>
-nnoremap <silent> <leader>tt <Plug>(go-test-func)<CR>
+nnoremap <silent> <leader>t :TestNearest<CR>
+nnoremap <silent> <leader>tt :TestFile<CR>
 nnoremap <silent> <leader>fs :GoFillStruct <CR>
 
 " diffview

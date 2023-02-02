@@ -66,6 +66,10 @@ return require('packer').startup(function(use)
   use 'prettier/vim-prettier'
   -- Copilot
   use 'github/copilot.vim'
+  -- vim testing helper
+  use 'vim-test/vim-test'
+  -- go install github.com/cweill/gotests/...
+  use 'buoto/gotests-vim'
   -- controlling
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use {

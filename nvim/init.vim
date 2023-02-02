@@ -153,3 +153,4 @@ autocmd BufWritePost *.go call GoFumpt()
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 
+let g:gotests_bin = '/Users/samwang/Workspace/bin/gotests'
