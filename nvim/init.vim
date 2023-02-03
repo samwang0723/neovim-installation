@@ -60,6 +60,7 @@ au FocusLost * :redraw!
 autocmd FileType go setlocal ts=8 sts=8 sw=8
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType tf setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType py setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
@@ -135,7 +136,7 @@ let g:vim_markdown_folding_disabled = 1
 " prettier
 let g:prettier#autoformat = 0
 let g:prettier#config_file = '~/.prettierrc.yml'
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.rb PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.rb,*.sh PrettierAsync
 
 " auto-formatting
 autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()

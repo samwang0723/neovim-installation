@@ -70,6 +70,19 @@ return require('packer').startup(function(use)
   use 'vim-test/vim-test'
   -- go install github.com/cweill/gotests/...
   use 'buoto/gotests-vim'
+  -- popup key bindings
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
   -- controlling
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
   use {
@@ -449,6 +462,7 @@ return require('packer').startup(function(use)
     setup = function()
       vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>Telescope live_grep<cr>", { noremap = true })
       vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>Telescope find_files<cr>", { noremap = true })
+      vim.api.nvim_set_keymap('n', '<leader>fr', "<cmd>Telescope oldfiles<cr>", { noremap = true })
     end
   }
 end)
