@@ -1,4 +1,6 @@
 lua require('plugins')
+lua require('keybindings')
+lua require('options')
 
 set updatetime=10 " Short updatetime so the CursorHold event fires fairly often
 function! HighlightWordUnderCursor()
