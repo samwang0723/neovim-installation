@@ -66,6 +66,8 @@ end
 
 local util = require('lspconfig/util')
 local lsp = require('lspconfig')
+
+-- golang LSP
 lsp.gopls.setup {
   root_dir = function(fname)
     local root = fname:match ".*/github.com/samwang0723/.-/"
@@ -124,6 +126,7 @@ lsp.golangci_lint_ls.setup {
     debounce_text_changes = 150,
   },
 }
+
 -- Ruby on Rails LSP
 lsp.solargraph.setup {
   root_dir = function(fname)
@@ -149,7 +152,8 @@ lsp.solargraph.setup {
     "ruby"
   },
 }
--- Javascript & Typescript
+
+-- Javascript & Typescript LSP
 lsp.tsserver.setup {
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   root_dir = function()
@@ -161,7 +165,8 @@ lsp.tsserver.setup {
     debounce_text_changes = 150,
   },
 }
--- HTML support
+
+-- HTML/CSS LSP
 lsp.html.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -169,7 +174,6 @@ lsp.html.setup {
     debounce_text_changes = 150,
   },
 }
--- CSS support
 lsp.cssls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -177,7 +181,8 @@ lsp.cssls.setup {
     debounce_text_changes = 150,
   },
 }
--- CSS support
+
+-- docker LSP
 lsp.dockerls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -185,7 +190,8 @@ lsp.dockerls.setup {
     debounce_text_changes = 150,
   },
 }
--- lua support
+
+-- lua LSP
 lsp.sumneko_lua.setup {
   settings = {
     Lua = {
@@ -201,7 +207,8 @@ lsp.sumneko_lua.setup {
     },
   },
 }
--- markdown
+
+-- markdown LSP
 lsp.marksman.setup {}
--- vim
+-- vim LSP
 lsp.vimls.setup {}

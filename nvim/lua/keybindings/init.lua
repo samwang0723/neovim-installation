@@ -9,9 +9,6 @@ map('n', '<leader>dc', ':DiffviewClose<CR>', { noremap = true, silent = true })
 map('n', 'vs', ':vsplit<CR>', { noremap = true, silent = true })
 map('n', 'hs', ':split<CR>', { noremap = true, silent = true })
 map('n', '"', ':WhichKey<CR>', { noremap = true, silent = true })
-map("i", "<tab>", "<C-R>=v:lua.tab_complete()<CR>", { silent = true, noremap = true })
-map("i", "<s-tab>", "<C-R>=v:lua.s_tab_complete()<CR>", { silent = true, noremap = true })
-map('i', '<enter>', '<C-R>=v:lua.enter_key()<CR>', { silent = true, noremap = true })
 
 -- Lspsaga keybindings
 map('n', '<leader>ca', ':Lspsaga code_action<CR>', { noremap = true, silent = true })

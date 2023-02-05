@@ -1,4 +1,6 @@
 require('nvim-cmp-config')
+require('nvim-treesitter-config')
+require('colorscheme')
 
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -118,18 +120,20 @@ return require('packer').startup({
       end
     }
 
-    use {
-      'rakr/vim-one',
-      setup = function()
-        vim.g.one_allow_italics = 1
-        vim.g.airline_theme = 'one'
-      end,
-      config = function()
-        vim.cmd [[colorscheme one]]
-        vim.cmd [[set background=dark]]
-        vim.cmd [[set termguicolors]]
-      end
-    }
+    -- colorscheme
+    use 'navarasu/onedark.nvim'
+    -- use {
+    --  'rakr/vim-one',
+    --  setup = function()
+    --    vim.g.one_allow_italics = 1
+    --    vim.g.airline_theme = 'one'
+    --  end,
+    --  config = function()
+    --    vim.cmd [[colorscheme one]]
+    --    vim.cmd [[set background=dark]]
+    --    vim.cmd [[set termguicolors]]
+    --  end
+    -- }
 
     use {
       'preservim/nerdtree',
@@ -156,66 +160,8 @@ return require('packer').startup({
     use 'hrsh7th/cmp-nvim-lsp' -- Autocompletion with LSPs
     use { 'neovim/nvim-lspconfig', config = "require('nvim-lspconfig-config')" }
 
-    use {
-      'fatih/vim-go',
-      run = ':GoUpdateBinaries',
-      ft = 'go',
-      setup = function()
-        vim.g.go_diagnostics_enabled = 0
-        vim.g.go_highlight_types = 1
-        vim.g.go_highlight_fields = 1
-        vim.g.go_highlight_functions = 1
-        vim.g.go_highlight_function_calls = 1
-        vim.g.go_highlight_operators = 1
-        vim.g.go_highlight_extra_types = 1
-        vim.g.go_highlight_build_constraints = 1
-        vim.g.go_highlight_generate_tags = 1
-        vim.g.go_gocode_propose_source = 0
-        vim.g.go_template_autocreate = 0
-        vim.g.go_fmt_autosave = 0
-        vim.g.go_gopls_enabled = 0
-
-        local t = function(str)
-          return vim.api.nvim_replace_termcodes(str, true, true, true)
-        end
-
-        local check_back_space = function()
-          local col = vim.fn.col('.') - 1
-          if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-            return true
-          else
-            return false
-          end
-        end
-
-        _G.tab_complete = function()
-          if vim.fn.pumvisible() == 1 then
-            return t "<C-n>"
-          elseif check_back_space() then
-            return t "<Tab>"
-          else
-            return t "<C-x><C-o>"
-          end
-        end
-
-        _G.s_tab_complete = function()
-          if vim.fn.pumvisible() == 1 then
-            return t "<C-p>"
-          else
-            return t "<C-h>"
-          end
-        end
-
-        _G.enter_key = function()
-          if vim.fn.pumvisible() == 1 then
-            return t "<C-y>"
-          else
-            return t "<CR>"
-          end
-        end
-      end
-    }
-
+    -- use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use {
       'nvim-telescope/telescope.nvim',
       requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
