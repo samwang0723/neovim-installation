@@ -1,3 +1,5 @@
+require('nvim-cmp-config')
+
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -142,6 +144,16 @@ return require('packer').startup({
       end
     }
 
+    use {
+      "L3MON4D3/LuaSnip",
+      -- follow latest release.
+      tag = "v<CurrentMajor>.*",
+      -- install jsregexp (optional!:).
+      run = "make install_jsregexp"
+    }
+    use 'rafamadriz/friendly-snippets'
+    use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+    use 'hrsh7th/cmp-nvim-lsp' -- Autocompletion with LSPs
     use { 'neovim/nvim-lspconfig', config = "require('nvim-lspconfig-config')" }
 
     use {
