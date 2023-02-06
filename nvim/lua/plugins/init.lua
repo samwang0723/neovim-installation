@@ -121,20 +121,11 @@ return require('packer').startup({
     }
 
     -- colorscheme
+    -- use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
     use 'navarasu/onedark.nvim'
-    -- use {
-    --  'rakr/vim-one',
-    --  setup = function()
-    --    vim.g.one_allow_italics = 1
-    --    vim.g.airline_theme = 'one'
-    --  end,
-    --  config = function()
-    --    vim.cmd [[colorscheme one]]
-    --    vim.cmd [[set background=dark]]
-    --    vim.cmd [[set termguicolors]]
-    --  end
-    -- }
+    -- use 'rakr/vim-one'
 
+    -- nerdtree to file explorer
     use {
       'preservim/nerdtree',
       setup = function()
@@ -147,7 +138,9 @@ return require('packer').startup({
         vim.cmd [[set mouse=a]]
       end
     }
+    use 'brenoprata10/nvim-highlight-colors'
 
+    -- snippets and auto completion
     use {
       "L3MON4D3/LuaSnip",
       -- follow latest release.
@@ -159,9 +152,9 @@ return require('packer').startup({
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- Autocompletion with LSPs
     use { 'neovim/nvim-lspconfig', config = "require('nvim-lspconfig-config')" }
-
-    -- use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+    -- telescope for convinient search
     use {
       'nvim-telescope/telescope.nvim',
       requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },

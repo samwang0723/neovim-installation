@@ -10,6 +10,35 @@ local colorscheme = "onedark"
 -- nord
 -- onedark
 -- nightfox
+-- one
+
+-- color palette
+-- black = "#181a1f",
+-- bg0 = "#282c34",
+-- bg1 = "#31353f",
+-- bg2 = "#393f4a",
+-- bg3 = "#3b3f4c",
+-- bg_d = "#21252b",
+-- bg_blue = "#73b8f1",
+-- bg_yellow = "#ebd09c",
+-- fg = "#abb2bf",
+-- purple = "#c678dd",
+-- green = "#98c379",
+-- orange = "#d19a66",
+-- blue = "#61afef",
+-- yellow = "#e5c07b",
+-- cyan = "#56b6c2",
+-- red = "#e86671",
+-- grey = "#5c6370",
+-- light_grey = "#848b98",
+-- dark_cyan = "#2b6f77",
+-- dark_red = "#993939",
+-- dark_yellow = "#93691d",
+-- dark_purple = "#8a3fa0",
+-- diff_add = "#31392b",
+-- diff_delete = "#382b2c",
+-- diff_change = "#1c3448",
+-- diff_text = "#2c5372",
 
 local status_ok, onedark = pcall(require, "onedark")
 if not status_ok then
@@ -46,17 +75,35 @@ onedark.setup {
 
   -- Custom Highlights --
   -- #bc7cd7
-  -- #
-  colors = {
-    bright_orange = "#ff8800", -- define a new color
-  },
+  -- #74adea
+  -- #f2d233
+  -- #a1c181
+  -- #d9d5d0
+  -- #ff941a
+  colors = {},
   highlights = {
-    ["@keyword"] = { fg = '#ff5722' },
+    ["@keyword"] = { fg = '$red' },
     ["@string"] = { fg = '#a1c181', fmt = 'bold' },
-    ["@function"] = { fg = '#f2d233', fmt = 'underline' },
-    ["@function.builtin"] = { fg = '#cf7704' },
+    ["@function"] = { fg = '$yellow' },
+    ["@function.builtin"] = { fg = '$red' },
+    ["@function.micro"] = { fg = '#ff941a' },
+    ["@method"] = { fg = '#74adea', fmt = 'bold' },
+    ["@method.call"] = { fg = '$yellow' },
+    ["@symbol"] = { fg = '#f2d233' },
     ["@variable"] = { fg = '#d9d5d0' },
-    ["@field"] = { fg = '#74adea' },
+    ["@string.regex"] = { fg = '$cyan' },
+    ["@string.escape"] = { fg = '$cyan' },
+    ["@field"] = { fg = '#d9d5d0' },
+    ["@property"] = { fg = '$red' },
+    ["@punctuation.bracket"] = { fg = '#d9d5d0' },
+    ["@type.definition"] = { fg = '$yellow' },
+    ["@type.builtin"] = { fg = '$cyan' },
+    ["@regex"] = { fg = '$cyan' },
+    ["@parameter"] = { fg = '#d9d5d0' },
+    ["@operator"] = { fg = '$blue' },
+    ["@namespace"] = { fg = '#d9d5d0' },
+    ["@keyword.return"] = { fg = '#bc7cd7' },
+    ["@constant"] = { fg = '#d9d5d0' },
   },
 
   -- Plugins Config --
@@ -68,8 +115,20 @@ onedark.setup {
 }
 onedark.load()
 
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
   vim.notify("colorscheme: " .. colorscheme .. " cannot be found!")
   return
 end
+
+status_ok, colors = pcall(require, 'nvim-highlight-colors')
+if not status_ok then
+  return
+end
+
+colors.setup {
+  render = 'background', -- or 'foreground' or 'first_column'
+  enable_named_colors = true,
+  enable_tailwind = false
+}
+colors.turnOn()

@@ -7,7 +7,8 @@ require 'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true
-  }, autotag = { enable = true },
+  },
+  autotag = { enable = true },
   rainbow = {
     enable = true,
     extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
@@ -15,7 +16,7 @@ require 'nvim-treesitter.configs'.setup {
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
   },
-  autopairs = { enable = true }
+  autopairs = { enable = true },
 }
 
 vim.wo.foldmethod = 'expr'
