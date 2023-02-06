@@ -12,6 +12,8 @@ function! HighlightWordUnderCursor()
 endfunction
 autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
 
+hi Visual  guifg=White guibg=#61afef gui=none
+
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store

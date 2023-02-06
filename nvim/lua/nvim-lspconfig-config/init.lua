@@ -209,6 +209,16 @@ lsp.sumneko_lua.setup {
 }
 
 -- markdown LSP
-lsp.marksman.setup {}
+lsp.marksman.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 -- vim LSP
-lsp.vimls.setup {}
+lsp.vimls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+lsp.sqlls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}

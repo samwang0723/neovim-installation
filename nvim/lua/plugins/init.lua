@@ -21,17 +21,15 @@ return require('packer').startup({
     use 'jiangmiao/auto-pairs'
     use 'Xuyuanp/nerdtree-git-plugin'
     use 'airblade/vim-gitgutter'
-    use 'tpope/vim-fugitive'
     use 'itchyny/vim-gitbranch'
     use 'andrewstuart/vim-kubernetes'
     use 'tsandall/vim-rego'
     use 'folke/lsp-colors.nvim'
     use { 'tami5/lspsaga.nvim', config = "require('lspsaga-config')" }
     -- ruby on rails
-    use 'vim-ruby/vim-ruby'
-    use 'tpope/vim-rails'
-    use 'tpope/vim-endwise'
-    use 'tpope/vim-bundler'
+    --use 'vim-ruby/vim-ruby'
+    --use 'tpope/vim-rails'
+    --use 'tpope/vim-endwise'
     use 'slim-template/vim-slim'
     -- sass highlight
     use 'JulesWang/css.vim'
@@ -49,24 +47,14 @@ return require('packer').startup({
     use { "folke/which-key.nvim", config = "require('whichkey-config')" }
     -- controlling
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-    use {
-      'romgrk/barbar.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons' }
-    }
+    use { 'romgrk/barbar.nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
     use {
       'APZelos/blamer.nvim',
       setup = function()
         vim.g.blamer_enabled = 1
       end
     }
-    use {
-      "j-hui/fidget.nvim",
-      setup = function()
-        window = {
-          blend = 0,
-        }
-      end
-    }
+    use 'arkav/lualine-lsp-progress'
     use {
       'preservim/tagbar',
       cmd = 'TagbarToggle',
@@ -98,7 +86,6 @@ return require('packer').startup({
           ctagsbin   = 'gotags',
           ctagsargs  = '-sort -silent'
         }
-        vim.api.nvim_set_keymap("n", "<F8>", "<cmd>TagbarToggle<cr>", { silent = true, noremap = true })
       end
     }
     use {
@@ -128,9 +115,6 @@ return require('packer').startup({
     -- nerdtree to file explorer
     use {
       'preservim/nerdtree',
-      setup = function()
-        vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>NERDTreeToggle<cr>", { silent = true, noremap = true })
-      end,
       config = function()
         vim.g.NERDTreeDirArrowExpandable = '├'
         vim.g.NERDTreeDirArrowCollapsible = '└'

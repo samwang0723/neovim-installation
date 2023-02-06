@@ -17,6 +17,7 @@ require 'nvim-treesitter.configs'.setup {
     -- termcolors = {} -- table of colour name strings
   },
   autopairs = { enable = true },
+  auto_install = true,
 }
 
 vim.wo.foldmethod = 'expr'
