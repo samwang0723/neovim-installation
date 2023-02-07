@@ -1,4 +1,6 @@
 lua require('plugins')
+lua require('keybindings')
+lua require('options')
 
 set updatetime=10 " Short updatetime so the CursorHold event fires fairly often
 function! HighlightWordUnderCursor()
@@ -9,6 +11,8 @@ function! HighlightWordUnderCursor()
   endif
 endfunction
 autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
+
+hi Visual  guifg=White guibg=#61afef gui=none
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -136,11 +140,11 @@ let g:vim_markdown_folding_disabled = 1
 " prettier
 let g:prettier#autoformat = 0
 let g:prettier#config_file = '~/.prettierrc.yml'
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.rb,*.sh PrettierAsync
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.rb,*.sh PrettierAsync
 
 " auto-formatting
-autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
-autocmd BufWritePre *.go.in lua vim.lsp.buf.formatting_sync()
+autocmd BufWritePre * lua vim.lsp.buf.format { async = true }
+autocmd BufWritePre *.go.in lua vim.lsp.buf.format { async = true }
 autocmd BufWritePre *.go lua goimports(1000)
 
 fun! GoFumpt()
