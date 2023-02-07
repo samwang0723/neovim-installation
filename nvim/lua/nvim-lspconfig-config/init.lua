@@ -215,7 +215,11 @@ lsp.vimls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
-lsp.sqlls.setup {
+lsp.sqls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+lsp.jsonls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }

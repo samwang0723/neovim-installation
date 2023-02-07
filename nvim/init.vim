@@ -71,6 +71,7 @@ autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType rb setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 " support css word with -
 autocmd FileType css,scss,slim,html,eruby,coffee,javascript,wxml setlocal iskeyword+=-
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
@@ -117,7 +118,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeChDirMode=2
 
 " json format
-au FileType json autocmd BufWritePost *.json execute '%!python -m json.tool' | w
+"au FileType json autocmd BufWritePost *.json execute '%!python -m json.tool' | w
 
 " gitgutter
 set updatetime=100

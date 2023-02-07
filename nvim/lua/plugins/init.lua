@@ -2,6 +2,7 @@ require('nvim-cmp-config')
 require('nvim-treesitter-config')
 require('colorscheme')
 require('prettier-config')
+require('mason-config')
 
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -140,6 +141,7 @@ return require('packer').startup({
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'MunifTanjim/prettier.nvim'
+    use 'williamboman/mason.nvim'
 
     -- telescope for convinient search
     use {
@@ -147,6 +149,8 @@ return require('packer').startup({
       requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
       cmd = 'Telescope'
     }
+
+    use 'aduros/ai.vim'
   end,
   config = {
     display = {
