@@ -1,0 +1,57 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+inherit_gem:
+  rubocop-rails_config:
+    - config/rails.yml
+
+AllCops:
+  Exclude:
+    - "db/schema.rb"
+    - "db/migrate/*"
+    - "db/i2c_core/migrate/*"
+    - "db/crypto_card/migrate/*"
+    - "tmp/**/*"
+    - "bin/*"
+    - "vendor/gems/**/*"
+    - "vendor/bundle/**/*"
+    - "vendor/cache/**/*"
+    - "node_modules/**/*"
+  TargetRubyVersion: 2.6
+
+Lint/RescueException:
+  Enabled: true
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/TopLevelMethodDefinition:
+  Enabled: true
+
+Layout/IndentationConsistency:
+  EnforcedStyle: normal
+
+# Extra rules for prettier
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+Layout/FirstArgumentIndentation:
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+
+RSpec/BeforeAfterAll:
+  Enabled: true
+
+Lint/Debugger:
+  DebuggerMethods:
+    Kernel:
+      - p
+      - pp
+      - puts
+    AwesomePrint:
+      - ap

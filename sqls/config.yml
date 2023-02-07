@@ -1,0 +1,11 @@
+# Set to true to use lowercase keywords instead of uppercase.
+lowercaseKeywords: false
+connections:
+  - alias: monaco-rails-db
+    driver: postgresql
+    proto: tcp
+    user: postgres
+    passwd: postgres
+    host: 0.0.0.0
+    port: 5432
+    dbName: monaco_development
