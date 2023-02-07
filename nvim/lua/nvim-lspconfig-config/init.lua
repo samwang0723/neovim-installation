@@ -130,11 +130,11 @@ lsp.golangci_lint_ls.setup {
 -- Ruby on Rails LSP
 lsp.solargraph.setup {
   root_dir = function(fname)
-    local root = fname:match ".*/github.com/samwang0723/.-/"
+    local root = fname:match ".*/github.com/monacohq/.-/"
     return root ~= nil and root or util.root_pattern(".git", "Gemfile")(fname)
   end,
   commandPath = '/Users/samwang/.asdf/shims/solargraph',
-  useBundler = true,
+  useBundler = false,
   diagnostics = true,
   completion = true,
   autoformat = true,
@@ -147,9 +147,6 @@ lsp.solargraph.setup {
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
-  },
-  filetypes = {
-    "ruby"
   },
 }
 

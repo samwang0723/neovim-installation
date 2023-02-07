@@ -25,5 +25,25 @@ function goimports(timeoutms)
     end
   end
   -- Always do formating
-  vim.lsp.buf.formatting_sync()
+  vim.lsp.buf.format { async = true }
 end
+
+vim.g.encoding = "UTF-8"
+vim.o.fileencoding = "utf-8"
+vim.o.autoread = true
+vim.bo.autoread = true
+vim.o.updatetime = 300
+vim.o.timeoutlen = 400
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.background = "dark"
+vim.o.termguicolors = true
+vim.opt.termguicolors = true
+vim.o.wildmenu = true
+vim.o.shortmess = vim.o.shortmess .. "c"
+vim.o.pumheight = 10
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.swapfile = false
+vim.g.undofile = true
+vim.undodir = "~/.vim/undo"

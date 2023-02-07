@@ -1,6 +1,7 @@
 require('nvim-cmp-config')
 require('nvim-treesitter-config')
 require('colorscheme')
+require('prettier-config')
 
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -36,7 +37,7 @@ return require('packer').startup({
     use 'cakebaker/scss-syntax.vim'
     use 'isRuslan/vim-es6'
     -- prettier
-    use 'prettier/vim-prettier'
+    -- use 'prettier/vim-prettier'
     -- Copilot
     use 'github/copilot.vim'
     -- vim testing helper
@@ -54,7 +55,7 @@ return require('packer').startup({
         vim.g.blamer_enabled = 1
       end
     }
-    use 'arkav/lualine-lsp-progress'
+    -- use 'arkav/lualine-lsp-progress'
     use {
       'preservim/tagbar',
       cmd = 'TagbarToggle',
@@ -137,6 +138,8 @@ return require('packer').startup({
     use 'hrsh7th/cmp-nvim-lsp' -- Autocompletion with LSPs
     use { 'neovim/nvim-lspconfig', config = "require('nvim-lspconfig-config')" }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use 'jose-elias-alvarez/null-ls.nvim'
+    use 'MunifTanjim/prettier.nvim'
 
     -- telescope for convinient search
     use {

@@ -22,5 +22,5 @@ map('n', ']e', ':Lspsaga diagnostic_jump_prev<CR>', { noremap = true, silent = t
 map('n', 'gs', ':Lspsaga signature_help<CR>', { noremap = true, silent = true })
 map('t', '<F6>', '<C-\\><C-n>:Lspsaga close_floaterm<CR>', { noremap = true, silent = true })
 map('n', '<F7>', ':Lspsaga open_floaterm<CR>', { noremap = true, silent = true })
-map('n', '<F6>', ':TagbarToggle<CR>', { noremap = true, silent = true })
-map('n', '<C-f>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+map('n', '<F8>', ':TagbarToggle<CR>', { noremap = true, silent = true })
+map('n', '<C-f>', ':NERDTreeToggle %<CR>', { noremap = true, silent = true })
