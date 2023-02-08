@@ -139,7 +139,7 @@ let g:vim_markdown_folding_disabled = 1
 " prettier
 let g:prettier#autoformat = 0
 let g:prettier#config_file = '~/.prettierrc.yml'
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.rb,*.sh PrettierAsync
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.graphql,*.md,*.go,*.rb,*.sh PrettierAsync
 
 " auto-formatting
 autocmd BufWritePre * lua vim.lsp.buf.format { async = true }

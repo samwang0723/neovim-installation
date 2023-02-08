@@ -34,6 +34,7 @@ database_migration() {
   # Check if the current working directory contains "crypto-fiat"
   elif echo "$current_dir" | grep -q "crypto-fiat"; then
     docker-compose down
+    sleep 5
     docker-compose up -d -V db-fiat
     bin/rails db:create db:migrate db:seed
   else
@@ -44,7 +45,21 @@ database_migration() {
 
 # Function to replace the strings
 replace_strings() {
-  sed -i '' 's/git@github.com:monacohq/git@work:monacohq/g' $1
+  sed -i '' 's/git@github.com:monacohq/git@work:monacohq/g' Gemfile
+ 
+# check if file exists
+if [ -f Gemfile ]; then
+  # check if the line exists in the file
+  if grep -q "gem 'annotate'" Gemfile; then
+    # delete the line containing "gem 'annotate'"
+    sed -i '' "/gem 'annotate'/d" Gemfile
+    echo "Line deleted successfully from Gemfile"
+  else
+    echo "Line not found in Gemfile"
+  fi
+else
+  echo "Gemfile not found"
+fi
 
   # backup the original Gemfile
   cp Gemfile Gemfile.bak
@@ -71,9 +86,8 @@ reset() {
 
 # Usage message
 usage() {
-  echo "Usage: $0 [-h|--help] <input-file> [revert|reset|replace|bundle|migrate|configure]"
+  echo "Usage: $0 [-h|--help] [revert|reset|replace|bundle|migrate|configure]"
   echo "  -h, --help     Show this help message and exit"
-  echo "  <input-file>   The file to be processed"
   echo "  reset          Reset the changes made by Git"
   echo "  replace        Replace the @github.com:monacohq to @work:monacohq in the file"
   echo "  bundle         Execute the replace and run bundle install"
@@ -89,7 +103,7 @@ if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
 fi
 
 # Input file location
-file=$1
+file=Gemfile
 
 # Check if the file exists
 if [ ! -f $file ]; then
@@ -98,22 +112,22 @@ if [ ! -f $file ]; then
 fi
 
 # Check if the second argument is provided
-if [ $# -eq 2 ]; then
-  if [ "$2" == "reset" ]; then
+if [ $# -eq 1 ]; then
+  if [ "$1" == "reset" ]; then
     reset
     echo "Gemfile reset to HEAD successfully"
-  elif [ "$2" == "replace" ]; then
+  elif [ "$1" == "replace" ]; then
     replace_strings $file
     echo "Changes replaced successfully"
-  elif [ "$2" == "bundle" ]; then
+  elif [ "$1" == "bundle" ]; then
     replace_strings $file
     echo "Changes replaced successfully, running bundle install"
     bundle install
-  elif [ "$2" == "migrate" ]; then
+  elif [ "$1" == "migrate" ]; then
     database_migration
-  elif [ "$2" == "configure" ]; then
+  elif [ "$1" == "configure" ]; then
     configure_repo
-  elif [ "$2" == "annotate" ]; then
+  elif [ "$1" == "annotate" ]; then
     generate_annotate
   else
     echo "Error: Invalid argument"
