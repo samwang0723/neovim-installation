@@ -151,6 +151,7 @@ return require('packer').startup({
     }
 
     use 'aduros/ai.vim'
+    use 'nanotee/sqls.nvim'
   end,
   config = {
     display = {

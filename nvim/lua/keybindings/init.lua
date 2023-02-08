@@ -24,3 +24,9 @@ map('t', '<F6>', '<C-\\><C-n>:Lspsaga close_floaterm<CR>', { noremap = true, sil
 map('n', '<F7>', ':Lspsaga open_floaterm<CR>', { noremap = true, silent = true })
 map('n', '<F8>', ':TagbarToggle<CR>', { noremap = true, silent = true })
 map('n', '<C-f>', ':NERDTreeToggle %<CR>', { noremap = true, silent = true })
+
+-- sqls keybindings
+map('n', '<leader>se', ':SqlsExecuteQuery<CR>', { noremap = true, silent = true })
+map('n', '<leader>sd', ':SqlsShowDatabases<CR>', { noremap = true, silent = true })
+map('n', '<leader>ss', ':SqlsShowSchemas<CR>', { noremap = true, silent = true })
+map('n', '<leader>sc', ':SqlsShowConnections<CR>', { noremap = true, silent = true })
