@@ -9,3 +9,11 @@ connections:
     host: 0.0.0.0
     port: 5432
     dbName: monaco_development
+  - alias: crypto-fiat-db
+    driver: postgresql
+    proto: tcp
+    user: crypto_fiat
+    passwd: crypto_fiat
+    host: 0.0.0.0
+    port: 57630
+    dbName: crypto_fiat_rails_development
