@@ -1,4 +1,7 @@
 vim.o.background = "dark"
+vim.o.termguicolors = true
+vim.opt.termguicolors = true
+
 -- vim.g.tokyonight_style = "storm" -- day / night
 -- vim.g.tokyonight_transparent = true
 -- vim.g.tokyonight_transparent_sidebar = true
