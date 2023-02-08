@@ -1,4 +1,8 @@
-local lspsaga = require 'lspsaga'
+local status_ok, lspsaga = pcall(require, "lspsaga")
+if not status_ok then
+  vim.notify("lspsaga: cannot be found!")
+  return
+end
 
 lspsaga.setup {
   debug = false,
@@ -31,4 +35,3 @@ lspsaga.setup {
   server_filetype_map = {},
   diagnostic_prefix_format = "%d. "
 }
-

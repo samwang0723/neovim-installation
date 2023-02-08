@@ -1,7 +1,13 @@
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 
-local wk = require("which-key")
+local status_ok, wk = pcall(require, "which-key")
+if not status_ok then
+  vim.notify("which_key: cannot be found!")
+
+  return
+end
+
 
 local mappings = {
   f = {

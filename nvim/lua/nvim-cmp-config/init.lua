@@ -1,12 +1,21 @@
-require("luasnip.loaders.from_vscode").lazy_load()
-
 local luasnip_status_ok, luasnip = pcall(require, "luasnip")
 if not luasnip_status_ok then
+  vim.notify("luasnip: cannot be found!")
   return
 end
 
+local luasnip_loader_status_ok, luasnip_loader = pcall(require, "luasnip.loaders.from_vscode")
+if not luasnip_loader_status_ok then
+  vim.notify("luasnip.loaders.from_vscode: cannot be found!")
+  return
+end
+
+luasnip_loader.lazy_load()
+
+
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
+  vim.notify("cmp: cannot be found!")
   return
 end
 

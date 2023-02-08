@@ -1,5 +1,6 @@
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
+  vim.notify("null_ls: cannot be found!")
   return
 end
 
@@ -36,6 +37,8 @@ null_ls.setup({
 
 local p_status_ok, prettier = pcall(require, "prettier")
 if not p_status_ok then
+  vim.notify("prettier: cannot be found!")
+
   return
 end
 

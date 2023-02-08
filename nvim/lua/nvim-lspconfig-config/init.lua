@@ -1,3 +1,13 @@
+local cmp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_status_ok then
+  vim.notify("cmp_nvim_lsp: cannot be found!")
+  return
+end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = false
+
 diagnostic_config = {
   -- Enable underline, use default values
   underline = true,
@@ -21,10 +31,6 @@ diagnostic_config = {
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
   diagnostic_config)
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -64,8 +70,17 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local util = require('lspconfig/util')
-local lsp = require('lspconfig')
+local lsputil_status_ok, util = pcall(require, "lspconfig/util")
+if not lsputil_status_ok then
+  vim.notify("lspconfig/util: cannot be found!")
+  return
+end
+
+local lsp_status_ok, lsp = pcall(require, "lspconfig")
+if not lsp_status_ok then
+  vim.notify("lspconfig: cannot be found!")
+  return
+end
 
 -- golang LSP
 lsp.gopls.setup {

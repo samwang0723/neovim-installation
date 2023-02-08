@@ -42,6 +42,7 @@ local colorscheme = "onedark"
 
 local status_ok, onedark = pcall(require, "onedark")
 if not status_ok then
+  vim.notify("onedark: cannot be found!")
   return
 end
 
@@ -129,6 +130,7 @@ end
 
 status_ok, colors = pcall(require, 'nvim-highlight-colors')
 if not status_ok then
+  vim.notify("nvim-highlight-colors: cannot be found!")
   return
 end
 
