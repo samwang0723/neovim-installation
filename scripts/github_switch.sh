@@ -33,9 +33,10 @@ database_migration() {
     ./bin/setup_db
   # Check if the current working directory contains "crypto-fiat"
   elif echo "$current_dir" | grep -q "crypto-fiat"; then
-    docker-compose down
-    sleep 5
+    docker-compose down --volumes
+    sleep 10
     docker-compose up -d -V db-fiat
+    sleep 10
     bin/rails db:create db:migrate db:seed
   else
     echo "Error: The current working directory does not contain either 'monaco-rails' or 'crypto-fiat'"
@@ -45,21 +46,21 @@ database_migration() {
 
 # Function to replace the strings
 replace_strings() {
-  sed -i '' 's/git@github.com:monacohq/git@work:monacohq/g' Gemfile
- 
-# check if file exists
-if [ -f Gemfile ]; then
-  # check if the line exists in the file
-  if grep -q "gem 'annotate'" Gemfile; then
-    # delete the line containing "gem 'annotate'"
-    sed -i '' "/gem 'annotate'/d" Gemfile
-    echo "Line deleted successfully from Gemfile"
+  # sed -i '' 's/git@github.com:monacohq/git@work:monacohq/g' Gemfile
+
+  # check if file exists
+  if [ -f Gemfile ]; then
+    # check if the line exists in the file
+    if grep -q "gem 'annotate'" Gemfile; then
+      # delete the line containing "gem 'annotate'"
+      sed -i '' "/gem 'annotate'/d" Gemfile
+      echo "Line deleted successfully from Gemfile"
+    else
+      echo "Line not found in Gemfile"
+    fi
   else
-    echo "Line not found in Gemfile"
+    echo "Gemfile not found"
   fi
-else
-  echo "Gemfile not found"
-fi
 
   # backup the original Gemfile
   cp Gemfile Gemfile.bak
