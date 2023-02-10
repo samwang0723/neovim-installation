@@ -152,6 +152,10 @@ return require('packer').startup({
 
     use 'aduros/ai.vim'
     use 'nanotee/sqls.nvim'
+
+    use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+      require("toggleterm").setup()
+    end }
   end,
   config = {
     display = {
