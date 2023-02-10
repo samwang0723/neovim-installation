@@ -8,8 +8,7 @@ if not status_ok then
   return
 end
 
-
-local mappings = {
+wk.register({
   f = {
     name = "Telescope",
     f = { "<cmd>Telescope find_files<cr>", "Find Files" },
@@ -26,8 +25,27 @@ local mappings = {
     s = { ":PackerSync<cr>", "Sync Plugins" },
     S = { ":PackerStatus<cr>", "Packer Status" },
     u = { ":PackerUpdate<cr>", "Update Plugins" }
+  },
+  s = {
+    name = "Sqls",
+    e = { ":SqlsExecuteQuery<cr>", "Execute Query" },
+    d = { ":SqlsShowDatabases<cr>", "Show Databases" },
+    s = { ":SqlsShowSchemas<cr>", "Show Schemas" },
+    c = { ":SqlsShowConnections<cr>", "Show Connections" },
+  },
+  d = {
+    name = "Diffview",
+    o = { ":DiffviewOpen<cr>", "Open Diffview" },
+    c = { ":DiffviewClose<cr>", "Close Diffview" },
+  },
+  g = {
+    name = "Golang",
+    c = { ":GoCoverageToggle<cr>", "Toggle Coverage" },
+    s = { ":GoFillStruct<cr>", "Fill Struct" },
+  },
+  t = {
+    name = "Tester",
+    n = { ":TestNearest<cr>", "Test Nearest" },
+    f = { ":TestFile<cr>", "Test File" },
   }
-}
-
-local opts = { prefix = '<leader>' }
-wk.register(mappings, opts)
+}, { prefix = '<leader>' })

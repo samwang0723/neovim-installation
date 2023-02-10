@@ -8,7 +8,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
-diagnostic_config = {
+local diagnostic_config = {
   -- Enable underline, use default values
   underline = true,
   -- Enable virtual text, override spacing to 2
@@ -232,7 +232,12 @@ lsp.vimls.setup {
 }
 lsp.sqls.setup {
   on_attach = function(client, bufnr)
-    require('sqls').on_attach(client, bufnr)
+    local status_ok, sqls = pcall(require, "sqls")
+    if not status_ok then
+      vim.notify("sqls: cannot be found!")
+      return
+    end
+    sqls.on_attach(client, bufnr)
   end,
   capabilities = capabilities,
 }
