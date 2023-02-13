@@ -167,10 +167,6 @@ lsp.solargraph.setup {
 
 -- Javascript & Typescript LSP
 lsp.tsserver.setup {
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  root_dir = function()
-    return vim.loop.cwd()
-  end,
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
