@@ -226,3 +226,15 @@ lsp.bashls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })
+
+lsp.sqls.setup({
+  on_attach = function(client, bufnr)
+    local status_ok, sqls = pcall(require, "sqls")
+    if not status_ok then
+      vim.notify("sqls: cannot be found!")
+      return
+    end
+    sqls.on_attach(client, bufnr)
+  end,
+  capabilities = capabilities,
+})

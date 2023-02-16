@@ -149,14 +149,14 @@ return require("packer").startup({
     use("MunifTanjim/prettier.nvim")
     use("williamboman/mason.nvim")
 
-    -- telescope for convinient search
+    -- telescope for convenient search
     use({
       "nvim-telescope/telescope.nvim",
       requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
       cmd = "Telescope",
     })
 
-    use("nanotee/sqls.nvim")
+    use("samwang0723/sqls.nvim")
 
     use({
       "akinsho/toggleterm.nvim",
