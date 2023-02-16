@@ -136,22 +136,6 @@ endif
 let g:rails_ctags_arguments = ['--languages=ruby --exclude=.git --exclude=log .']
 let g:vim_markdown_folding_disabled = 1
 
-" prettier
-let g:prettier#autoformat = 0
-let g:prettier#config_file = '~/.prettierrc.yml'
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.graphql,*.md,*.go,*.rb,*.sh PrettierAsync
-
-" auto-formatting
-autocmd BufWritePre * lua vim.lsp.buf.format { async = true }
-autocmd BufWritePre *.go.in lua vim.lsp.buf.format { async = true }
-autocmd BufWritePre *.go lua goimports(1000)
-
-fun! GoFumpt()
-  :silent !gofumpt -w %
-  :edit
-endfun
-
-autocmd BufWritePost *.go call GoFumpt()
 
 " avoid Tab autocomplete conflict with copilot accept
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")

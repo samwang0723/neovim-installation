@@ -6,7 +6,7 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-capabilities.textDocument.completion.completionItem.snippetSupport = false
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local diagnostic_config = {
   -- Enable underline, use default values
@@ -18,7 +18,7 @@ local diagnostic_config = {
   -- Use a function to dynamically turn signs off
   -- and on, using buffer local variables
   signs = function(bufnr, client_id)
-    local ok, result = pcall(vim.api.nvim_buf_get_var, bufnr, 'show_signs')
+    local ok, result = pcall(vim.api.nvim_buf_get_var, bufnr, "show_signs")
     -- No buffer local variable set, so just enable by default
     if not ok then
       return true
@@ -33,41 +33,21 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   diagnostic_config)
 
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  client.server_capabilities.document_formatting = false
+  client.server_capabilities.document_range_formatting = false
 
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  local function buf_set_keymap(...)
+    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
 
   -- Mappings.
   local opts = { noremap = true, silent = true }
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'ga', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-
-  -- Set some keybinds conditional on server capabilities
-  if client.server_capabilities.document_formatting then
-    buf_set_keymap("n", "<leader>lfa", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  elseif client.server_capabilities.document_range_formatting then
-    buf_set_keymap("n", "<leader>lfr", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-  end
-
-  -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.document_highlight then
-    vim.api.nvim_exec([[
-                  hi LspReferenceRead cterm=bold ctermbg=DarkMagenta guibg=LightYellow
-                  hi LspReferenceText cterm=bold ctermbg=DarkMagenta guibg=LightYellow
-                  hi LspReferenceWrite cterm=bold ctermbg=DarkMagenta guibg=LightYellow
-                  augroup lsp_document_highlight
-                    autocmd! * <buffer>
-                    autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-                  augroup END
-                ]], false)
-  end
+  buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  buf_set_keymap("n", "ga", "<Cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 end
 
 local lsputil_status_ok, util = pcall(require, "lspconfig/util")
@@ -83,9 +63,9 @@ if not lsp_status_ok then
 end
 
 -- golang LSP
-lsp.gopls.setup {
+lsp.gopls.setup({
   root_dir = function(fname)
-    local root = fname:match ".*/github.com/samwang0723/.-/"
+    local root = fname:match(".*/github.com/samwang0723/.-/")
     return root ~= nil and root or util.root_pattern(".git", "go.mod")(fname)
   end,
   cmd = { "gopls", "-v", "-rpc.trace", "serve", "--debug=localhost:6060" },
@@ -133,22 +113,23 @@ lsp.gopls.setup {
       gofumpt = true,
     },
   },
-}
-lsp.golangci_lint_ls.setup {
+})
+
+lsp.golangci_lint_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
   },
-}
+})
 
 -- Ruby on Rails LSP
-lsp.solargraph.setup {
+lsp.solargraph.setup({
   root_dir = function(fname)
-    local root = fname:match ".*/github.com/monacohq/.-/"
+    local root = fname:match(".*/github.com/monacohq/.-/")
     return root ~= nil and root or util.root_pattern(".git", "Gemfile")(fname)
   end,
-  commandPath = '/Users/samwang/.asdf/shims/solargraph',
+  commandPath = "/Users/samwang/.asdf/shims/solargraph",
   useBundler = false,
   diagnostics = true,
   completion = true,
@@ -163,53 +144,54 @@ lsp.solargraph.setup {
   flags = {
     debounce_text_changes = 150,
   },
-}
+})
 
 -- Javascript & Typescript LSP
-lsp.tsserver.setup {
+lsp.tsserver.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
   },
-}
+})
 
 -- HTML/CSS LSP
-lsp.html.setup {
+lsp.html.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
   },
-}
-lsp.cssls.setup {
+})
+
+lsp.cssls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
   },
-}
+})
 
 -- docker LSP
-lsp.dockerls.setup {
+lsp.dockerls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
   },
-}
+})
 
 -- lua LSP
-lsp.lua_ls.setup {
+lsp.lua_ls.setup({
   settings = {
     Lua = {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
+        version = "LuaJIT",
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = { 'vim', 'lua' },
+        globals = { "vim", "lua" },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -221,35 +203,26 @@ lsp.lua_ls.setup {
       },
     },
   },
-}
+})
 
 -- markdown LSP
-lsp.marksman.setup {
+lsp.marksman.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
--- vim LSP
-lsp.vimls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-lsp.sqls.setup {
-  on_attach = function(client, bufnr)
-    local status_ok, sqls = pcall(require, "sqls")
-    if not status_ok then
-      vim.notify("sqls: cannot be found!")
-      return
-    end
-    sqls.on_attach(client, bufnr)
-  end,
-  capabilities = capabilities,
-}
-lsp.jsonls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
+})
 
-lsp.bashls.setup {
+-- vim LSP
+lsp.vimls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
+
+lsp.jsonls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+lsp.bashls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})

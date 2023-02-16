@@ -14,8 +14,8 @@ brew install ctags-exuberant
 
 ## Neovim Configuration
 
--   Create folder under ~/.config/nvim to store init.vim and lua/ Packer configuration.
--   Launch any file using nvim and run `PackerSync`
+- Create folder under ~/.config/nvim to store init.vim and lua/ Packer configuration.
+- Launch any file using nvim and run `PackerSync`
 
 ### Packer
 
