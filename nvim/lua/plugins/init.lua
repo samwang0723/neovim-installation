@@ -25,7 +25,12 @@ return require("packer").startup({
     use("itchyny/lightline.vim")
     use("ryanoasis/vim-devicons")
     use("Yggdroot/indentLine")
-    use("jiangmiao/auto-pairs")
+    use({
+      "windwp/nvim-autopairs",
+      config = function()
+        require("nvim-autopairs").setup({})
+      end,
+    })
     use("Xuyuanp/nerdtree-git-plugin")
     use("airblade/vim-gitgutter")
     use("itchyny/vim-gitbranch")
@@ -50,6 +55,15 @@ return require("packer").startup({
     use("vim-test/vim-test")
     -- go install github.com/cweill/gotests/...
     use("buoto/gotests-vim")
+    use({
+      "andythigpen/nvim-coverage",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("coverage").setup({
+          commands = true,
+        })
+      end,
+    })
     -- popup key bindings
     use({ "folke/which-key.nvim", config = "require('whichkey-config')" })
     -- controlling

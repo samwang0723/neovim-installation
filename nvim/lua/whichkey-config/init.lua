@@ -24,7 +24,7 @@ wk.register({
     p = { ":PackerProfile<cr>", "Packer Profile" },
     s = { ":PackerSync<cr>", "Sync Plugins" },
     S = { ":PackerStatus<cr>", "Packer Status" },
-    u = { ":PackerUpdate<cr>", "Update Plugins" }
+    u = { ":PackerUpdate<cr>", "Update Plugins" },
   },
   s = {
     name = "Sqls",
@@ -40,12 +40,29 @@ wk.register({
   },
   g = {
     name = "Golang",
-    c = { ":GoCoverageToggle<cr>", "Toggle Coverage" },
-    s = { ":GoFillStruct<cr>", "Fill Struct" },
+    tf = { ":GoTests<cr>", "Generate Function Test " },
+    ta = { ":GoTestsAll<cr>", "Generate Test for File" },
   },
   t = {
     name = "Tester",
     n = { ":TestNearest<cr>", "Test Nearest" },
     f = { ":TestFile<cr>", "Test File" },
-  }
-}, { prefix = '<leader>' })
+    c = { ":CoverageToggle<cr>", "Coverage" },
+  },
+  l = {
+    name = "Lspsaga",
+    a = { ":Lspsaga code_action<CR>", "Code Action" },
+    d = { ":Lspsaga show_line_diagnostics<CR>", "Show Diagnostics" },
+    dn = { ":Lspsaga diagnostic_jump_next<CR>", "Next Diagnostic" },
+    dp = { ":Lspsaga diagnostic_jump_prev<CR>", "Previous Diagnostic" },
+    f = { ":Lspsaga lsp_finder<CR>", "LSP Finder" },
+    h = { ":Lspsaga hover_doc<CR>", "Hover Doc" },
+    r = { ":Lspsaga rename<CR>", "Rename" },
+    s = { ":Lspsaga signature_help<CR>", "Signature Help" },
+  },
+  w = {
+    name = "Split",
+    v = { ":vsplit<cr>", "Vertical Split" },
+    h = { ":split<cr>", "Horizontal Split" },
+  },
+}, { prefix = "<leader>" })
