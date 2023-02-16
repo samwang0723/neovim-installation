@@ -19,9 +19,9 @@ current_dir=$(pwd)
 # Configure the git commit to local repo
 configure_repo() {
 	git config --local commit.gpgSign true
-	git config --local user.email "sam.wang@crypto.com"
-	git config --local user.name "samwang-crypto"
-	git config --local user.signingkey 7A0073BC472E5A29
+	git config --local user.email "xxxx@gmail.com"
+	git config --local user.name "xxxxx"
+	git config --local user.signingkey XXXXXXXX
 }
 
 # Execute the database migration command
