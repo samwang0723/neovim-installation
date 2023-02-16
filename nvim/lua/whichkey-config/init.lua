@@ -40,14 +40,18 @@ wk.register({
   },
   g = {
     name = "Golang",
-    tf = { ":GoTests<cr>", "Generate Function Test " },
-    ta = { ":GoTestsAll<cr>", "Generate Test for File" },
+    f = { ":GoTests<cr>", "Generate Function Test " },
+    a = { ":GoTestsAll<cr>", "Generate Test for File" },
   },
   t = {
     name = "Tester",
     n = { ":TestNearest<cr>", "Test Nearest" },
     f = { ":TestFile<cr>", "Test File" },
-    c = { ":CoverageToggle<cr>", "Coverage" },
+    c = {
+      name = "Coverage",
+      s = { ":Coverage<cr>", "Coverage Show" },
+      c = { ":CoverageClear<cr>", "Coverage Clear" },
+    },
   },
   l = {
     name = "Lspsaga",
