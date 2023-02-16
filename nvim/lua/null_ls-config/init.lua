@@ -14,11 +14,26 @@ null_ls.setup({
     formatting.rome,
     -- StyLua
     formatting.stylua,
+    -- Golang
     formatting.gofumpt,
     formatting.gofmt,
     formatting.goimports,
     -- frontend
-    formatting.prettier,
+    formatting.prettier.with({
+      filetypes = {
+        "javascript",
+        "typescript",
+        "css",
+        "scss",
+        "html",
+        "json",
+        "yaml",
+        "markdown",
+      },
+      command = "prettier",
+      args = { "--config", vim.env.HOME .. "/.prettierrc.yml", "-" },
+      to_stdin = true,
+    }),
     formatting.fixjson,
     formatting.black.with({ extra_args = { "--fast" } }),
     formatting.dprint,
@@ -28,7 +43,7 @@ null_ls.setup({
   },
 
   on_attach = function(client)
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()")
+    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })")
   end,
 })
 

@@ -42,7 +42,7 @@ Packer https://github.com/wbthomason/packer.nvim
 ```
 %s/{source}/{replacement}/p
 ---
-select the first caracter of your block
+select the first character of your block
 press Ctrl+V ( this is rectangular visual selection mode)
 type j for each line more you want to be commented
 type Shift-i (like I for "insert at start")
@@ -71,7 +71,7 @@ Ctrl+w - go to the window above the selected window
 ```
 \fg - live grep
 \ff - find files
-F7/F6 - open/Clos inner terminal
+F7/F6 - open/Close inner terminal
 F8 - code tags
 gh - lsp finder
 gi - implementation
