@@ -179,6 +179,7 @@ return require("packer").startup({
         require("toggleterm").setup()
       end,
     })
+    use({ "rcarriga/nvim-notify" })
   end,
   config = {
     display = {
