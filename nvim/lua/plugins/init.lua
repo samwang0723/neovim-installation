@@ -180,6 +180,7 @@ return require("packer").startup({
       end,
     })
     use({ "rcarriga/nvim-notify" })
+    use({ "m4xshen/smartcolumn.nvim" })
   end,
   config = {
     display = {
