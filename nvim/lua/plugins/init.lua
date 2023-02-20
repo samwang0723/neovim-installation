@@ -4,6 +4,13 @@ require("colorscheme")
 require("null_ls-config")
 require("mason-config")
 
+local sc_status_ok, smartcolumn = pcall(require, "smartcolumn")
+if sc_status_ok then
+  smartcolumn.setup()
+else
+  vim.notify("smartcolumn: cannot be found!")
+end
+
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
