@@ -63,6 +63,7 @@ wk.register({
     h = { ":Lspsaga hover_doc<CR>", "Hover Doc" },
     r = { ":Lspsaga rename<CR>", "Rename" },
     s = { ":Lspsaga signature_help<CR>", "Signature Help" },
+    p = { ":Prettier<CR>", "Prettier formatting" },
   },
   w = {
     name = "Split",
