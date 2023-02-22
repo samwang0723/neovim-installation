@@ -57,7 +57,33 @@ return require("packer").startup({
     -- prettier
     -- use 'prettier/vim-prettier'
     -- Copilot
-    use("github/copilot.vim")
+    -- use("github/copilot.vim")
+    use({
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup({
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+        })
+      end,
+    })
+
+    use({
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua" },
+      config = function()
+        require("copilot_cmp").setup({
+          method = "getCompletionsCycling",
+          formatters = {
+            label = require("copilot_cmp.format").format_label_text,
+            insert_text = require("copilot_cmp.format").format_insert_text,
+            preview = require("copilot_cmp.format").deindent,
+          },
+        })
+      end,
+    })
     -- vim testing helper
     use("vim-test/vim-test")
     -- go install github.com/cweill/gotests/...
@@ -164,6 +190,9 @@ return require("packer").startup({
     use("rafamadriz/friendly-snippets")
     use("hrsh7th/nvim-cmp") -- Autocompletion plugin
     use("hrsh7th/cmp-nvim-lsp") -- Autocompletion with LSPs
+    use("hrsh7th/cmp-buffer") -- Autocompletion with buffer
+    use("hrsh7th/cmp-path") -- Autocompletion with path
+    use("onsails/lspkind-nvim")
     use({ "neovim/nvim-lspconfig", config = "require('nvim-lspconfig-config')" })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use("jose-elias-alvarez/null-ls.nvim")
