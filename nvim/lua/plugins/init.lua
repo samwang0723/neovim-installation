@@ -188,7 +188,7 @@ return require("packer").startup({
     })
     use("saadparwaiz1/cmp_luasnip")
     use("rafamadriz/friendly-snippets")
-    use("hrsh7th/nvim-cmp") -- Autocompletion plugin
+    use("samwang0723/nvim-cmp") -- Autocompletion plugin
     use("hrsh7th/cmp-nvim-lsp") -- Autocompletion with LSPs
     use("hrsh7th/cmp-buffer") -- Autocompletion with buffer
     use("hrsh7th/cmp-path") -- Autocompletion with path
