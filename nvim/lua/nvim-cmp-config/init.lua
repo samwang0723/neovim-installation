@@ -40,14 +40,14 @@ local has_words_before = function()
 end
 
 cmp.setup({
-  completion = {
-    autocomplete = {
-      cmp.TriggerEvent.TextChanged,
-      cmp.TriggerEvent.InsertEnter,
-    },
-    completeopt = "menuone,noinsert,noselect",
-    -- keyword_length = 0,
-  },
+  --completion = {
+  --  autocomplete = {
+  --    cmp.TriggerEvent.TextChanged,
+  --    cmp.TriggerEvent.InsertEnter,
+  --  },
+  --  completeopt = "menuone,noinsert,noselect",
+  --  -- keyword_length = 0,
+  --},
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -81,7 +81,7 @@ cmp.setup({
   },
   sources = {
     -- Copilot Source
-    { name = "copilot", group_index = 2 },
+    -- { name = "copilot", group_index = 2 },
     { name = "nvim_lsp", group_index = 2 },
     { name = "luasnip", group_index = 2 },
     { name = "path", group_index = 2 },

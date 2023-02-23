@@ -57,26 +57,26 @@ return require("packer").startup({
     -- prettier
     -- use 'prettier/vim-prettier'
     -- Copilot
-    -- use("github/copilot.vim")
-    use({
-      "zbirenbaum/copilot.lua",
-      cmd = "Copilot",
-      event = "InsertEnter",
-      config = function()
-        require("copilot").setup({
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-        })
-      end,
-    })
+    use("github/copilot.vim")
+    -- use({
+    --   "zbirenbaum/copilot.lua",
+    --   cmd = "Copilot",
+    --   event = "InsertEnter",
+    --   config = function()
+    --     require("copilot").setup({
+    --       suggestion = { enabled = false },
+    --       panel = { enabled = false },
+    --     })
+    --   end,
+    -- })
 
-    use({
-      "zbirenbaum/copilot-cmp",
-      after = { "copilot.lua" },
-      config = function()
-        require("copilot_cmp").setup({})
-      end,
-    })
+    -- use({
+    --   "zbirenbaum/copilot-cmp",
+    --   after = { "copilot.lua" },
+    --   config = function()
+    --     require("copilot_cmp").setup({})
+    --   end,
+    -- })
     -- vim testing helper
     use("vim-test/vim-test")
     -- go install github.com/cweill/gotests/...
@@ -184,8 +184,9 @@ return require("packer").startup({
     use({
       "samwang0723/nvim-cmp",
       requires = {
-        { "zbirenbaum/copilot-cmp" },
-        { "zbirenbaum/copilot-cmp" },
+        --{ "zbirenbaum/copilot-cmp" },
+        --{ "zbirenbaum/copilot-cmp" },
+        { "onsails/lspkind-nvim" },
       },
     }) -- Autocompletion plugin
     use("hrsh7th/cmp-nvim-lsp") -- Autocompletion with LSPs
