@@ -74,14 +74,7 @@ return require("packer").startup({
       "zbirenbaum/copilot-cmp",
       after = { "copilot.lua" },
       config = function()
-        require("copilot_cmp").setup({
-          method = "getCompletionsCycling",
-          formatters = {
-            label = require("copilot_cmp.format").format_label_text,
-            insert_text = require("copilot_cmp.format").format_insert_text,
-            preview = require("copilot_cmp.format").deindent,
-          },
-        })
+        require("copilot_cmp").setup({})
       end,
     })
     -- vim testing helper
@@ -188,7 +181,13 @@ return require("packer").startup({
     })
     use("saadparwaiz1/cmp_luasnip")
     use("rafamadriz/friendly-snippets")
-    use("samwang0723/nvim-cmp") -- Autocompletion plugin
+    use({
+      "samwang0723/nvim-cmp",
+      requires = {
+        { "zbirenbaum/copilot-cmp" },
+        { "zbirenbaum/copilot-cmp" },
+      },
+    }) -- Autocompletion plugin
     use("hrsh7th/cmp-nvim-lsp") -- Autocompletion with LSPs
     use("hrsh7th/cmp-buffer") -- Autocompletion with buffer
     use("hrsh7th/cmp-path") -- Autocompletion with path

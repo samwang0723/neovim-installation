@@ -40,29 +40,26 @@ local has_words_before = function()
 end
 
 cmp.setup({
+  completion = {
+    autocomplete = {
+      cmp.TriggerEvent.TextChanged,
+      cmp.TriggerEvent.InsertEnter,
+    },
+    completeopt = "menuone,noinsert,noselect",
+    -- keyword_length = 0,
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.expandable() then
-        luasnip.expand()
+      if luasnip.expand_or_jumpable() and has_words_before() then
+        luasnip.expand_or_jump()
       elseif cmp.visible() and has_words_before() then
         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-      elseif luasnip.jumpable(1) then
-        luasnip.jump(1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
       else
         fallback()
       end
@@ -82,12 +79,32 @@ cmp.setup({
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
-  sources = cmp.config.sources({
+  sources = {
     -- Copilot Source
     { name = "copilot", group_index = 2 },
     { name = "nvim_lsp", group_index = 2 },
     { name = "luasnip", group_index = 2 },
-  }, {
-    { name = "buffer" },
-  }),
+    { name = "path", group_index = 2 },
+    {
+      name = "buffer",
+      option = {
+        -- complete from visible buffers
+        get_bufnrs = function()
+          local bufs = {}
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end,
+      },
+      group_index = 2,
+    },
+  },
+  experimental = {
+    view = {
+      -- entries = true,
+      entries = { name = "custom", selection_order = "near_cursor" },
+    },
+    ghost_text = true,
+  },
 })
