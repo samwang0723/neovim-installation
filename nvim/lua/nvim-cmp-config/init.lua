@@ -40,14 +40,14 @@ local has_words_before = function()
 end
 
 cmp.setup({
-  --completion = {
-  --  autocomplete = {
-  --    cmp.TriggerEvent.TextChanged,
-  --    cmp.TriggerEvent.InsertEnter,
-  --  },
-  --  completeopt = "menuone,noinsert,noselect",
-  --  -- keyword_length = 0,
-  --},
+  completion = {
+    autocomplete = {
+      cmp.TriggerEvent.TextChanged,
+      cmp.TriggerEvent.InsertEnter,
+    },
+    completeopt = "menuone,noinsert,noselect",
+    -- keyword_length = 0,
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -66,6 +66,7 @@ cmp.setup({
     end, { "i", "s" }),
   }),
   formatting = {
+    fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format({
       with_text = true, -- do not show text alongside icons
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
@@ -81,7 +82,7 @@ cmp.setup({
   },
   sources = {
     -- Copilot Source
-    -- { name = "copilot", group_index = 2 },
+    { name = "copilot", group_index = 2 },
     { name = "nvim_lsp", group_index = 2 },
     { name = "luasnip", group_index = 2 },
     { name = "path", group_index = 2 },
