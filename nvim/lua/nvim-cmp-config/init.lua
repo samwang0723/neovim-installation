@@ -23,7 +23,7 @@ lspkind.init({
     Copilot = "",
   },
 })
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+-- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
@@ -82,7 +82,7 @@ cmp.setup({
   },
   sources = {
     -- Copilot Source
-    { name = "copilot", group_index = 2 },
+    -- { name = "copilot", group_index = 2 },
     { name = "nvim_lsp", group_index = 2 },
     { name = "luasnip", group_index = 2 },
     { name = "path", group_index = 2 },

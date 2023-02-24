@@ -57,23 +57,23 @@ return require("packer").startup({
     -- prettier
     -- use 'prettier/vim-prettier'
     -- Copilot
-    -- use("github/copilot.vim")
-    use({
-      "zbirenbaum/copilot.lua",
-      event = { "VimEnter" },
-      config = function()
-        vim.defer_fn(function()
-          require("copilot").setup()
-        end, 100)
-      end,
-    })
-    use({
-      "zbirenbaum/copilot-cmp",
-      after = { "copilot.lua" },
-      config = function()
-        require("copilot_cmp").setup()
-      end,
-    })
+    use("github/copilot.vim")
+    --use({
+    --  "zbirenbaum/copilot.lua",
+    --  event = { "VimEnter" },
+    --  config = function()
+    --    vim.defer_fn(function()
+    --      require("copilot").setup()
+    --    end, 100)
+    --  end,
+    --})
+    --use({
+    --  "zbirenbaum/copilot-cmp",
+    --  after = { "copilot.lua" },
+    --  config = function()
+    --    require("copilot_cmp").setup()
+    --  end,
+    --})
     -- vim testing helper
     use("vim-test/vim-test")
     -- go install github.com/cweill/gotests/...
