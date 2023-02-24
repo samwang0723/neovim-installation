@@ -23,6 +23,9 @@ lspkind.init({
     Copilot = "",
   },
 })
+
+-- change Copilot icon color
+vim.api.nvim_command("hi CmpItemKindCopilot guifg=#6CC644")
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 local cmp_status_ok, cmp = pcall(require, "cmp")
@@ -40,14 +43,6 @@ local has_words_before = function()
 end
 
 cmp.setup({
-  completion = {
-    autocomplete = {
-      cmp.TriggerEvent.TextChanged,
-      cmp.TriggerEvent.InsertEnter,
-    },
-    completeopt = "menuone,noinsert,noselect",
-    -- keyword_length = 0,
-  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -100,12 +95,5 @@ cmp.setup({
       },
       group_index = 2,
     },
-  },
-  experimental = {
-    view = {
-      -- entries = true,
-      entries = { name = "custom", selection_order = "near_cursor" },
-    },
-    ghost_text = true,
   },
 })

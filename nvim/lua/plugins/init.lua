@@ -63,15 +63,38 @@ return require("packer").startup({
       event = { "VimEnter" },
       config = function()
         vim.defer_fn(function()
-          require("copilot").setup()
+          require("copilot").setup({
+            panel = {
+              enabled = true,
+              auto_refresh = true,
+              layout = {
+                position = "bottom", -- | top | left | right
+                ratio = 0.4,
+              },
+            },
+            suggestion = {
+              enabled = true,
+              auto_trigger = true,
+              debounce = 75,
+              keymap = {
+                accept = "<C-J>",
+                accept_word = false,
+                accept_line = false,
+                next = "<C-]>",
+                prev = "<C-[>",
+              },
+            },
+          })
         end, 100)
       end,
     })
     use({
       "zbirenbaum/copilot-cmp",
-      after = { "copilot.lua" },
+      after = { "copilot.lua", "nvim-cmp" },
       config = function()
-        require("copilot_cmp").setup()
+        require("copilot_cmp").setup({
+          method = "getCompletionsCycling",
+        })
       end,
     })
     -- vim testing helper
