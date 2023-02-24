@@ -139,8 +139,8 @@ let g:vim_markdown_folding_disabled = 1
 
 
 " avoid Tab autocomplete conflict with copilot accept
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
+" imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+" let g:copilot_no_tab_map = v:true
 
 let g:gotests_bin = '/Users/samwang/Workspace/bin/gotests'
 

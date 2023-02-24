@@ -108,7 +108,6 @@ lsp.gopls.setup({
       deepCompletion = true,
       tempModfile = false,
       expandWorkspaceToModule = false,
-      experimentalWorkspaceModule = false,
       verboseOutput = true,
       gofumpt = true,
     },
