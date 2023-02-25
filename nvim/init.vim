@@ -83,35 +83,6 @@ autocmd BufNewFile,BufRead *.json.jb set filetype=ruby
 autocmd BufNewFile,BufRead *.wxml set filetype=xml
 autocmd BufNewFile,BufRead *.wxss set filetype=css
 
-" lightline
-set laststatus=2
-set noshowmode
-
-if !has('gui_running')
-  set t_Co=256
-endif
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name',
-      \   'filename': 'LightlineFilename',
-      \ },
-      \ }
-
-function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'gitbranch_path'), ':h:h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
-  endif
-  return expand('%')
-endfunction
-
 " NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeChDirMode=2

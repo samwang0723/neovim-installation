@@ -1,3 +1,4 @@
+require("lualine-config")
 require("nvim-cmp-config")
 require("nvim-treesitter-config")
 require("colorscheme")
@@ -29,7 +30,6 @@ return require("packer").startup({
   function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
-    use("itchyny/lightline.vim")
     use("ryanoasis/vim-devicons")
     use("Yggdroot/indentLine")
     use({
@@ -81,6 +81,11 @@ return require("packer").startup({
       setup = function()
         vim.g.blamer_enabled = 1
       end,
+    })
+    -- lualine status bar
+    use({
+      "nvim-lualine/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons", opt = true },
     })
     -- use 'arkav/lualine-lsp-progress'
     use({
