@@ -55,7 +55,7 @@ return require("packer").startup({
     use("cakebaker/scss-syntax.vim")
     use("isRuslan/vim-es6")
     -- prettier
-    -- use 'prettier/vim-prettier'
+    use("prettier/vim-prettier")
     -- Copilot
     use("github/copilot.vim")
     --use({
