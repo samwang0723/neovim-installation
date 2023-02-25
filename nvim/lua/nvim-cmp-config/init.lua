@@ -101,11 +101,4 @@ cmp.setup({
       group_index = 2,
     },
   },
-  experimental = {
-    view = {
-      -- entries = true,
-      entries = { name = "custom", selection_order = "near_cursor" },
-    },
-    ghost_text = true,
-  },
 })

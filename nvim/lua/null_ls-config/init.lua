@@ -29,6 +29,8 @@ null_ls.setup({
         "json",
         "yaml",
         "markdown",
+        "go",
+        "ruby",
       },
       command = "prettier",
       args = { "--config", vim.env.HOME .. "/.prettierrc.yml", "-" },
