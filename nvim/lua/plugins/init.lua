@@ -55,25 +55,9 @@ return require("packer").startup({
     use("cakebaker/scss-syntax.vim")
     use("isRuslan/vim-es6")
     -- prettier
-    use("prettier/vim-prettier")
+    use("MunifTanjim/prettier.nvim")
     -- Copilot
     use("github/copilot.vim")
-    --use({
-    --  "zbirenbaum/copilot.lua",
-    --  event = { "VimEnter" },
-    --  config = function()
-    --    vim.defer_fn(function()
-    --      require("copilot").setup()
-    --    end, 100)
-    --  end,
-    --})
-    --use({
-    --  "zbirenbaum/copilot-cmp",
-    --  after = { "copilot.lua" },
-    --  config = function()
-    --    require("copilot_cmp").setup()
-    --  end,
-    --})
     -- vim testing helper
     use("vim-test/vim-test")
     -- go install github.com/cweill/gotests/...
@@ -144,18 +128,15 @@ return require("packer").startup({
         vim.g.closetag_close_shortcut = "<leader>>"
       end,
     })
+    use("samwang0723/sqls.nvim")
     use({
       "hashivim/vim-terraform",
       setup = function()
         vim.g.terraform_fmt_on_save = 1
       end,
     })
-
     -- colorscheme
-    -- use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
     use("navarasu/onedark.nvim")
-    -- use 'rakr/vim-one'
-
     -- nerdtree to file explorer
     use({
       "preservim/nerdtree",
@@ -167,7 +148,6 @@ return require("packer").startup({
       end,
     })
     use("brenoprata10/nvim-highlight-colors")
-
     -- snippets and auto completion
     use({
       "L3MON4D3/LuaSnip",
@@ -186,18 +166,13 @@ return require("packer").startup({
     use({ "neovim/nvim-lspconfig", config = "require('nvim-lspconfig-config')" })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use("jose-elias-alvarez/null-ls.nvim")
-    use("MunifTanjim/prettier.nvim")
     use("williamboman/mason.nvim")
-
     -- telescope for convenient search
     use({
       "nvim-telescope/telescope.nvim",
       requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
       cmd = "Telescope",
     })
-
-    use("samwang0723/sqls.nvim")
-
     use({
       "akinsho/toggleterm.nvim",
       tag = "*",

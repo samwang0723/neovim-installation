@@ -173,6 +173,13 @@ lsp.cssls.setup({
 })
 
 -- docker LSP
+lsp.docker_compose_language_service.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+})
 lsp.dockerls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
