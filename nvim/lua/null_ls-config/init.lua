@@ -78,12 +78,12 @@ null_ls.setup({
   end,
 })
 
---vim.cmd([[
---    augroup format_on_save
---        autocmd!
---        autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
---    augroup end
---]])
+vim.cmd([[
+    augroup format_on_save
+        autocmd!
+        autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
+    augroup end
+]])
 
 local prettier_status_ok, prettier = pcall(require, "prettier")
 if not prettier_status_ok then
