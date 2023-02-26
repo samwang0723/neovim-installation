@@ -43,7 +43,7 @@ set secure
 set autoread
 set termguicolors
 set list lcs=tab:\¦\ 
-set wildmode=longest,list,full
+autocmd FileType help,nerdtree,dashboard IndentLinesDisable
 
 " Save whenever switching windows or leaving vim. This is useful when running
 " the tests inside vim without having to save all files first.

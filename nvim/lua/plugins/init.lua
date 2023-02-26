@@ -7,7 +7,9 @@ require("mason-config")
 
 local sc_status_ok, smartcolumn = pcall(require, "smartcolumn")
 if sc_status_ok then
-  smartcolumn.setup()
+  smartcolumn.setup({
+    disabled_filetypes = { "dashboard", "packer" },
+  })
 else
   vim.notify("smartcolumn: cannot be found!")
 end
@@ -31,6 +33,7 @@ return require("packer").startup({
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
     use("ryanoasis/vim-devicons")
+    use("nvim-tree/nvim-web-devicons")
     use("Yggdroot/indentLine")
     use({
       "windwp/nvim-autopairs",
@@ -75,7 +78,7 @@ return require("packer").startup({
     use({ "folke/which-key.nvim", config = "require('whichkey-config')" })
     -- controlling
     use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
-    use({ "romgrk/barbar.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+    use({ "romgrk/barbar.nvim", requires = { "nvim-web-devicons" } })
     use({
       "APZelos/blamer.nvim",
       setup = function()
@@ -85,7 +88,7 @@ return require("packer").startup({
     -- lualine status bar
     use({
       "nvim-lualine/lualine.nvim",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      requires = { "nvim-web-devicons", opt = true },
     })
     -- use 'arkav/lualine-lsp-progress'
     use({
@@ -188,6 +191,39 @@ return require("packer").startup({
     })
     use({ "rcarriga/nvim-notify" })
     use({ "m4xshen/smartcolumn.nvim" })
+    -- use({ "chentoast/marks.nvim", config = "require('marks-config')" })
+    use({
+      "glepnir/dashboard-nvim",
+      event = "VimEnter",
+      config = function()
+        require("dashboard").setup({
+          config = {
+            theme = "hyper",
+            week_header = {
+              enable = true,
+            },
+            shortcut = {
+              { desc = " Update", group = "@property", action = "PackerSync", key = "u" },
+              {
+                icon = " ",
+                icon_hl = "@variable",
+                desc = "Files",
+                group = "Label",
+                action = "Telescope find_files",
+                key = "f",
+              },
+              {
+                desc = " Live Grep",
+                group = "Number",
+                action = "Telescope live_grep",
+                key = "g",
+              },
+            },
+          },
+        })
+      end,
+      requires = { "nvim-web-devicons" },
+    })
   end,
   config = {
     display = {

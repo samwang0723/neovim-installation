@@ -55,8 +55,8 @@ local config = {
     theme = bubbles_theme,
     component_separators = "|",
     section_separators = { left = "", right = "" },
-    disabled_filetypes = { "packer", "nerdtree", "toggleterm" },
-    ignore_focus = { "nerdtree", "toggleterm" },
+    disabled_filetypes = { "packer", "nerdtree", "toggleterm", "dashboard" },
+    ignore_focus = { "nerdtree", "toggleterm", "dashboard" },
   },
   sections = {
     lualine_a = {
