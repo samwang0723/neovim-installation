@@ -56,9 +56,12 @@ wk.register({
   l = {
     name = "Lspsaga",
     a = { ":Lspsaga code_action<CR>", "Code Action" },
-    d = { ":Lspsaga show_line_diagnostics<CR>", "Show Diagnostics" },
-    dn = { ":Lspsaga diagnostic_jump_next<CR>", "Next Diagnostic" },
-    dp = { ":Lspsaga diagnostic_jump_prev<CR>", "Previous Diagnostic" },
+    d = {
+      name = "Diagnostic",
+      s = { ":Lspsaga show_line_diagnostics<CR>", "Show Diagnostics" },
+      n = { ":Lspsaga diagnostic_jump_next<CR>", "Next Diagnostic" },
+      p = { ":Lspsaga diagnostic_jump_prev<CR>", "Previous Diagnostic" },
+    },
     f = { ":Lspsaga lsp_finder<CR>", "LSP Finder" },
     h = { ":Lspsaga hover_doc<CR>", "Hover Doc" },
     r = { ":Lspsaga rename<CR>", "Rename" },
