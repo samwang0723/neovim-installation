@@ -149,7 +149,7 @@ return require("packer").startup({
         vim.g.NERDTreeDirArrowExpandable = "├"
         vim.g.NERDTreeDirArrowCollapsible = "└"
         vim.g.NERDTreeMapActivateNode = "<tab>"
-        vim.cmd([[set mouse=a]])
+        vim.cmd([[set mouse+=a]])
       end,
     })
     use("brenoprata10/nvim-highlight-colors")
