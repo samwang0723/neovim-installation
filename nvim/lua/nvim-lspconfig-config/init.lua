@@ -4,6 +4,13 @@ if not cmp_status_ok then
   return
 end
 
+local f_status_ok, fidget = pcall(require, "fidget")
+if not f_status_ok then
+  vim.notify("fidget: cannot be found!")
+  return
+end
+fidget.setup({})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -108,7 +115,6 @@ lsp.gopls.setup({
       deepCompletion = true,
       tempModfile = false,
       expandWorkspaceToModule = false,
-      experimentalWorkspaceModule = false,
       verboseOutput = true,
       gofumpt = true,
     },
