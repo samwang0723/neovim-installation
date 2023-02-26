@@ -42,7 +42,9 @@ set exrc
 set secure
 set autoread
 set termguicolors
-set list lcs=tab:\¦\ 
+set list lcs=tab:\¦\ ,eol:¬,trail:⋅
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'
 autocmd FileType help,nerdtree,dashboard IndentLinesDisable
 
 " Save whenever switching windows or leaving vim. This is useful when running
