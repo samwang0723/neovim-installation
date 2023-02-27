@@ -152,6 +152,7 @@ return require("packer").startup({
         vim.g.NERDTreeDirArrowExpandable = "├"
         vim.g.NERDTreeDirArrowCollapsible = "└"
         vim.g.NERDTreeMapActivateNode = "<tab>"
+        vim.g.NERDTreeChDirMode = 0
         vim.cmd([[set mouse+=a]])
       end,
     })

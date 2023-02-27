@@ -87,7 +87,6 @@ autocmd BufNewFile,BufRead *.wxss set filetype=css
 
 " NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeChDirMode=2
 
 " json format
 "au FileType json autocmd BufWritePost *.json execute '%!python -m json.tool' | w
