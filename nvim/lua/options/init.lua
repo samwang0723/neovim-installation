@@ -6,6 +6,23 @@ vim.cmd([[set autoindent]])
 vim.cmd([[set smartindent]])
 vim.cmd([[packadd vimball]])
 
+vim.g.encoding = "UTF-8"
+vim.o.fileencoding = "utf-8"
+vim.o.autoread = true
+vim.bo.autoread = true
+vim.o.updatetime = 300
+vim.o.timeoutlen = 400
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.wildmenu = true
+vim.o.shortmess = vim.o.shortmess .. "c"
+vim.o.pumheight = 10
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.swapfile = false
+vim.g.undofile = true
+vim.undodir = "~/.vim/undo"
+
 function goimports(timeoutms)
   local context = { source = { organizeImports = true } }
   vim.validate({ context = { context, "t", true } })
@@ -27,37 +44,3 @@ function goimports(timeoutms)
   -- Always do formatting
   vim.lsp.buf.format({ async = true })
 end
-
-vim.g.encoding = "UTF-8"
-vim.o.fileencoding = "utf-8"
-vim.o.autoread = true
-vim.bo.autoread = true
-vim.o.updatetime = 300
-vim.o.timeoutlen = 400
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.wildmenu = true
-vim.o.shortmess = vim.o.shortmess .. "c"
-vim.o.pumheight = 10
-vim.o.backup = false
-vim.o.writebackup = false
-vim.o.swapfile = false
-vim.g.undofile = true
-vim.undodir = "~/.vim/undo"
-
-require("bufferline").setup({
-  -- Enables/disable clickable tabs
-  --  - left-click: go to buffer
-  --  - middle-click: delete buffer
-  clickable = true,
-  -- Enable/disable icons
-  -- if set to 'numbers', will show buffer index in the tabline
-  -- if set to 'both', will show buffer index and icons in the tabline
-  icons = true,
-  -- Configure icons on the bufferline.
-  icon_separator_active = "▎",
-  icon_separator_inactive = "▎",
-  icon_close_tab = "",
-  icon_close_tab_modified = "●",
-  icon_pinned = "車",
-})

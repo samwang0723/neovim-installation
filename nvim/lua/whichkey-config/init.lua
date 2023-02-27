@@ -9,12 +9,23 @@ if not status_ok then
 end
 
 wk.register({
+  b = {
+    name = "Bookmarks",
+    b = { ":BookmarkToggle<cr>", "Toggle Bookmark" },
+    n = { ":BookmarkNext<cr>", "Next Bookmark" },
+    p = { ":BookmarkPrev<cr>", "Previous Bookmark" },
+    c = { ":BookmarkClear<cr>", "Clear Bookmarks" },
+    x = { ":BookmarkClearAll<cr>", "Clear All Bookmarks" },
+    g = { ":BookmarkMoveToLine<cr>", "Bookmark move to line" },
+    s = { ":BookmarkShowAll<cr>", "Bookmarks show all" },
+  },
   f = {
     name = "Telescope",
-    f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-    g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
+    f = { ":Telescope find_files<cr>", "Find Files" },
+    g = { ":Telescope live_grep<cr>", "Live Grep" },
+    b = { ":Telescope buffers<cr>", "Buffers" },
+    r = { ":Telescope oldfiles<cr>", "Recent Files" },
+    m = { ":Telescope vim_bookmarks all<cr>", "All Bookmarks" },
   },
   k = {
     name = "Packer",
