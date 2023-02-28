@@ -251,3 +251,18 @@ lsp.sqls.setup({
   end,
   capabilities = capabilities,
 })
+
+lsp.pyright.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "off",
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        reportGeneralTypeIssues = false,
+      },
+    },
+  },
+})
