@@ -167,16 +167,7 @@ return require("packer").startup({
     -- colorscheme
     use("navarasu/onedark.nvim")
     -- nerdtree to file explorer
-    use({
-      "preservim/nerdtree",
-      config = function()
-        vim.g.NERDTreeDirArrowExpandable = "├"
-        vim.g.NERDTreeDirArrowCollapsible = "└"
-        vim.g.NERDTreeMapActivateNode = "<tab>"
-        vim.g.NERDTreeChDirMode = 0
-        vim.cmd([[set mouse+=a]])
-      end,
-    })
+    use({ "preservim/nerdtree" })
     use("brenoprata10/nvim-highlight-colors")
     -- snippets and auto completion
     use({
@@ -279,7 +270,10 @@ return require("packer").startup({
       "gorbit99/codewindow.nvim",
       config = function()
         local codewindow = require("codewindow")
-        codewindow.setup()
+        codewindow.setup({
+          active_in_terminals = false,
+          exclude_filetypes = { "dashboard", "nerdtree", "toggleterm", "packer" },
+        })
         codewindow.apply_default_keybinds()
       end,
     })

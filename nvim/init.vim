@@ -4,7 +4,7 @@ lua require('options')
 
 set updatetime=10 " Short updatetime so the CursorHold event fires fairly often
 function! HighlightWordUnderCursor()
-  if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]'
+  if &filetype != "nerdtree" && getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]'
     exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/'
   else
     match none
@@ -94,6 +94,12 @@ autocmd BufNewFile,BufRead *.wxss set filetype=css
 
 " NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeChDirMode = 0
+let g:NERDTreeDirArrowExpandable = "├"
+let g:NERDTreeDirArrowCollapsible = "└"
+let g:NERDTreeMapActivateNode = "<tab>"
+set mouse=a
+
 
 " json format
 "au FileType json autocmd BufWritePost *.json execute '%!python -m json.tool' | w
