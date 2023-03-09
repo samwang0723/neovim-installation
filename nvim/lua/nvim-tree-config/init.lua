@@ -45,6 +45,9 @@ nvim_tree.setup({
   filters = {
     custom = {
       "^.git$",
+      ".DS_Store",
+      "__py_cache__",
+      "venv",
     },
   },
   git = {
