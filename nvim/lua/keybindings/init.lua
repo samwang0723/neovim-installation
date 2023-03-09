@@ -1,6 +1,6 @@
 local map = vim.api.nvim_set_keymap
 
-map("n", "<C-f>", ":NERDTreeToggle %<CR>", { noremap = true, silent = true })
+map("n", "<C-f>", ":NvimTreeToggle %<CR>", { noremap = true, silent = true })
 map("n", '"', ":WhichKey<CR>", { noremap = true, silent = true })
 map("n", "<C-t>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>', { noremap = true, silent = true })
 map("i", "<C-t>", '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { noremap = true, silent = true })

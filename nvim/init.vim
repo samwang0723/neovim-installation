@@ -4,7 +4,7 @@ lua require('options')
 
 set updatetime=10 " Short updatetime so the CursorHold event fires fairly often
 function! HighlightWordUnderCursor()
-  if &filetype != "nerdtree" && getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]'
+  if &filetype != "NvimTree" && getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]'
     exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/'
   else
     match none
@@ -45,7 +45,7 @@ set termguicolors
 set list lcs=tab:\¦\ ,eol:¬,trail:⋅
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
-autocmd FileType help,nerdtree,dashboard IndentLinesDisable
+autocmd FileType help,NvimTree,dashboard IndentLinesDisable
 
 " Bookmarks
 highlight BookmarkSign ctermbg=NONE ctermfg=160
@@ -91,18 +91,6 @@ autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 autocmd BufNewFile,BufRead *.json.jb set filetype=ruby
 autocmd BufNewFile,BufRead *.wxml set filetype=xml
 autocmd BufNewFile,BufRead *.wxss set filetype=css
-
-" NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let g:NERDTreeChDirMode = 0
-let g:NERDTreeDirArrowExpandable = "├"
-let g:NERDTreeDirArrowCollapsible = "└"
-let g:NERDTreeMapActivateNode = "<tab>"
-set mouse=a
-
-
-" json format
-"au FileType json autocmd BufWritePost *.json execute '%!python -m json.tool' | w
 
 " gitgutter
 set updatetime=100

@@ -41,7 +41,6 @@ return require("packer").startup({
         require("nvim-autopairs").setup({})
       end,
     })
-    use("Xuyuanp/nerdtree-git-plugin")
     use("airblade/vim-gitgutter")
     use("itchyny/vim-gitbranch")
     use("andrewstuart/vim-kubernetes")
@@ -167,7 +166,15 @@ return require("packer").startup({
     -- colorscheme
     use("navarasu/onedark.nvim")
     -- nerdtree to file explorer
-    use({ "preservim/nerdtree" })
+    --use({ "preservim/nerdtree" })
+    --use("Xuyuanp/nerdtree-git-plugin")
+    use({
+      "nvim-tree/nvim-tree.lua",
+      requires = {
+        "nvim-tree/nvim-web-devicons", -- optional, for file icons
+      },
+      config = "require('nvim-tree-config')",
+    })
     use("brenoprata10/nvim-highlight-colors")
     -- snippets and auto completion
     use({
@@ -272,7 +279,7 @@ return require("packer").startup({
         local codewindow = require("codewindow")
         codewindow.setup({
           active_in_terminals = false,
-          exclude_filetypes = { "dashboard", "nerdtree", "toggleterm", "packer" },
+          exclude_filetypes = { "dashboard", "NvimTree", "toggleterm", "packer" },
         })
         codewindow.apply_default_keybinds()
       end,

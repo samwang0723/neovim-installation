@@ -22,6 +22,8 @@ null_ls.setup({
     formatting.gofumpt,
     formatting.gofmt,
     formatting.goimports,
+    -- Python
+    formatting.autopep8,
     -- frontend
     formatting.prettier.with({
       filetypes = {
@@ -46,6 +48,7 @@ null_ls.setup({
     formatting.sql_formatter,
     formatting.buf,
     formatting.codespell,
+    formatting.cbfmt,
   },
 
   -- on_attach = function(client)
