@@ -47,6 +47,11 @@ nvim_tree.setup({
       "^.git$",
     },
   },
+  git = {
+    enable = true,
+    ignore = false,
+    timeout = 500,
+  },
   actions = {
     change_dir = {
       enable = false,
