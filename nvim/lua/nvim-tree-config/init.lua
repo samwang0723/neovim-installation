@@ -46,7 +46,7 @@ nvim_tree.setup({
     custom = {
       "^.git$",
       ".DS_Store",
-      "__py_cache__",
+      "__pycache__",
       "venv",
     },
   },
