@@ -4,6 +4,7 @@ require("nvim-treesitter-config")
 require("colorscheme")
 require("null_ls-config")
 require("mason-config")
+require("nvim-notify-config")
 
 local sc_status_ok, smartcolumn = pcall(require, "smartcolumn")
 if sc_status_ok then

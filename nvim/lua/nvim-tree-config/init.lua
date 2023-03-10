@@ -48,6 +48,8 @@ nvim_tree.setup({
       ".DS_Store",
       "__pycache__",
       "venv",
+      "node_modules",
+      "dist",
     },
   },
   git = {
@@ -86,6 +88,7 @@ nvim_tree.setup({
 })
 
 vim.g.nvim_tree_auto_open = 1
+vim.g.nvim_tree_show_full_path = 1
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
