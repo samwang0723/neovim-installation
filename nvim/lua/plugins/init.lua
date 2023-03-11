@@ -217,7 +217,7 @@ return require("packer").startup({
     use({ "m4xshen/smartcolumn.nvim" })
     -- use({ "chentoast/marks.nvim", config = "require('marks-config')" })
     use({
-      "glepnir/dashboard-nvim",
+      "samwang0723/dashboard-nvim",
       event = "VimEnter",
       config = function()
         require("dashboard").setup({
