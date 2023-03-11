@@ -8,8 +8,8 @@ nvim_tree.setup({
   disable_netrw = true,
   hijack_netrw = true,
   hijack_cursor = true,
-  open_on_setup = true,
-  open_on_setup_file = true,
+  open_on_setup = false,
+  open_on_setup_file = false,
   focus_empty_on_setup = true,
   sync_root_with_cwd = true,
   view = {
@@ -87,7 +87,7 @@ nvim_tree.setup({
   },
 })
 
-vim.g.nvim_tree_auto_open = 1
+vim.g.nvim_tree_auto_open = 0
 vim.g.nvim_tree_show_full_path = 1
 
 -- disable netrw at the very start of your init.lua (strongly advised)
