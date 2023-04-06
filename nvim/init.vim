@@ -47,13 +47,6 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 autocmd FileType help,NvimTree,dashboard IndentLinesDisable
 
-" Bookmarks
-highlight BookmarkSign ctermbg=NONE ctermfg=160
-highlight BookmarkLine ctermbg=194 ctermfg=NONE
-let g:bookmark_sign = '⚑'
-let g:bookmark_highlight_lines = 1
-let g:bookmark_no_default_key_mappings = 1
-
 " Save whenever switching windows or leaving vim. This is useful when running
 " the tests inside vim without having to save all files first.
 au FocusLost,WinLeave * :silent! wa

@@ -9,16 +9,6 @@ if not status_ok then
 end
 
 wk.register({
-  b = {
-    name = "Bookmarks",
-    b = { ":BookmarkToggle<cr>", "Toggle Bookmark" },
-    n = { ":BookmarkNext<cr>", "Next Bookmark" },
-    p = { ":BookmarkPrev<cr>", "Previous Bookmark" },
-    c = { ":BookmarkClear<cr>", "Clear Bookmarks" },
-    x = { ":BookmarkClearAll<cr>", "Clear All Bookmarks" },
-    g = { ":BookmarkMoveToLine<cr>", "Bookmark move to line" },
-    s = { ":BookmarkShowAll<cr>", "Bookmarks show all" },
-  },
   f = {
     name = "Telescope",
     f = { ":Telescope find_files<cr>", "Find Files" },

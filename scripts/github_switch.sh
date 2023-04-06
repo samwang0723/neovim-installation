@@ -46,7 +46,7 @@ database_migration() {
 
 # Function to replace the strings
 replace_strings() {
-	# sed -i '' 's/git@github.com:monacohq/git@work:monacohq/g' Gemfile
+	sed -i '' 's/git@github.com:monacohq/git@work:monacohq/g' Gemfile
 
 	# check if file exists
 	if [ -f Gemfile ]; then

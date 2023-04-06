@@ -81,24 +81,6 @@ return require("packer").startup({
     use({
       "romgrk/barbar.nvim",
       requires = { "nvim-web-devicons" },
-      config = function()
-        require("bufferline").setup({
-          -- Enables/disable clickable tabs
-          --  - left-click: go to buffer
-          --  - middle-click: delete buffer
-          clickable = true,
-          -- Enable/disable icons
-          -- if set to 'numbers', will show buffer index in the tabline
-          -- if set to 'both', will show buffer index and icons in the tabline
-          icons = true,
-          -- Configure icons on the bufferline.
-          icon_separator_active = "▎",
-          icon_separator_inactive = "▎",
-          icon_close_tab = "",
-          icon_close_tab_modified = "●",
-          icon_pinned = "車",
-        })
-      end,
     })
     use({
       "APZelos/blamer.nvim",
@@ -215,7 +197,6 @@ return require("packer").startup({
     })
     use({ "rcarriga/nvim-notify" })
     use({ "m4xshen/smartcolumn.nvim" })
-    -- use({ "chentoast/marks.nvim", config = "require('marks-config')" })
     use({
       "samwang0723/dashboard-nvim",
       event = "VimEnter",
@@ -248,8 +229,6 @@ return require("packer").startup({
       end,
       requires = { "nvim-web-devicons" },
     })
-    -- bookmarks
-    use({ "MattesGroeger/vim-bookmarks" })
 
     -- csv support
     use({

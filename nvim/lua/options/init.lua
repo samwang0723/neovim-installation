@@ -20,6 +20,7 @@ vim.o.pumheight = 10
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.swapfile = false
+vim.g.nvim_tree_show_marks = 1
 vim.g.undofile = true
 vim.undodir = "~/.vim/undo"
 
