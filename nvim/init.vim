@@ -113,3 +113,17 @@ let g:gotests_bin = '/Users/samwang/Workspace/bin/gotests'
 autocmd Filetype json
   \ let g:indentLine_setConceal = 0 |
   \ let g:vim_json_syntax_conceal = 0
+
+function HelmSyntax()
+  set filetype=helm
+  unlet b:current_syntax
+  syn include @yamlGoTextTmpl syntax/gotexttmpl.vim
+  let b:current_syntax = "helm"
+  syn region goTextTmpl start=/{{/ end=/}}/ contains=@gotplLiteral,gotplControl,gotplFunctions,gotplVariable,goTplIdentifier containedin=ALLBUT,goTextTmpl keepend
+  hi def link goTextTmpl PreProc
+endfunction
+
+augroup helm_syntax
+  autocmd!
+  autocmd BufRead,BufNewFile */templates/*.yaml,*/templates/*.tpl call HelmSyntax()
+augroup END

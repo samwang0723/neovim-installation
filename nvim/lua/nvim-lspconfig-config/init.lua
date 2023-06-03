@@ -55,6 +55,10 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
   buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+
+  if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+    vim.diagnostic.disable()
+  end
 end
 
 local lsputil_status_ok, util = pcall(require, "lspconfig/util")
@@ -179,13 +183,13 @@ lsp.cssls.setup({
 })
 
 -- docker LSP
-lsp.docker_compose_language_service.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-})
+--lsp.docker_compose_language_service.setup({
+--  on_attach = on_attach,
+--  capabilities = capabilities,
+--  flags = {
+--    debounce_text_changes = 150,
+--  },
+--})
 lsp.dockerls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
@@ -240,17 +244,17 @@ lsp.bashls.setup({
   capabilities = capabilities,
 })
 
-lsp.sqls.setup({
-  on_attach = function(client, bufnr)
-    local status_ok, sqls = pcall(require, "sqls")
-    if not status_ok then
-      vim.notify("sqls: cannot be found!")
-      return
-    end
-    sqls.on_attach(client, bufnr)
-  end,
-  capabilities = capabilities,
-})
+--lsp.sqls.setup({
+--  on_attach = function(client, bufnr)
+--    local status_ok, sqls = pcall(require, "sqls")
+--    if not status_ok then
+--      vim.notify("sqls: cannot be found!")
+--      return
+--    end
+--    sqls.on_attach(client, bufnr)
+--  end,
+--  capabilities = capabilities,
+--})
 
 lsp.pyright.setup({
   on_attach = on_attach,
@@ -265,4 +269,35 @@ lsp.pyright.setup({
       },
     },
   },
+})
+
+local configs = require("lspconfig.configs")
+if not configs.helm_ls then
+  configs.helm_ls = {
+    default_config = {
+      cmd = { "helm_ls", "serve" },
+      filetypes = { "helm" },
+      root_dir = function(fname)
+        return util.root_pattern("Chart.yaml")(fname)
+      end,
+    },
+  }
+end
+
+lsp.helm_ls.setup({
+  filetypes = { "helm" },
+  cmd = { "helm_ls", "serve" },
+})
+
+lsp.yamlls.setup({
+  settings = {
+    yaml = {
+      schemas = {
+        ["file:///Users/samwang/Workspace/src/github.com/samwang0723/neovim-installation/nvim/syntax/compose_spec.json"] = "/docker-compose*.yml",
+        ["https://json.schemastore.org/chart.json"] = "/deployment/helm/*",
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+      },
+    },
+  },
+  on_attach = on_attach,
 })

@@ -252,18 +252,7 @@ return require("packer").startup({
       },
     })
 
-    -- minimao
-    use({
-      "gorbit99/codewindow.nvim",
-      config = function()
-        local codewindow = require("codewindow")
-        codewindow.setup({
-          active_in_terminals = false,
-          exclude_filetypes = { "dashboard", "NvimTree", "toggleterm", "packer" },
-        })
-        codewindow.apply_default_keybinds()
-      end,
-    })
+    use({ "towolf/vim-helm" })
   end,
   config = {
     display = {

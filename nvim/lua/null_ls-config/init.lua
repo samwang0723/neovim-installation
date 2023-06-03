@@ -5,6 +5,7 @@ if not null_ls_status_ok then
 end
 
 local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
 
 local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
 local event = "BufWritePre" -- or "BufWritePost"
@@ -47,7 +48,8 @@ null_ls.setup({
     formatting.dprint,
     formatting.sql_formatter,
     formatting.buf,
-    formatting.codespell,
+    diagnostics.codespell,
+    diagnostics.write_good,
     formatting.cbfmt,
   },
 
@@ -77,6 +79,10 @@ null_ls.setup({
       vim.keymap.set("x", "rf", function()
         vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
       end, { buffer = bufnr, desc = "[lsp] format" })
+    end
+
+    if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+      vim.diagnostic.disable()
     end
   end,
 })
@@ -138,7 +144,7 @@ prettier.setup({
     quote_props = "preserve",
     -- semi = true,
     -- single_attribute_per_line = false,
-    --single_quote = true,
+    single_quote = true,
     --tab_width = 2,
     trailing_comma = "none",
     --use_tabs = false,
