@@ -176,7 +176,7 @@ return require("packer").startup({
     use("hrsh7th/cmp-path") -- Autocompletion with path
     use("onsails/lspkind-nvim")
     use({ "samwang0723/nvim-lspconfig", config = "require('nvim-lspconfig-config')" })
-    use({ "j-hui/fidget.nvim" })
+    use({ "j-hui/fidget.nvim", tag = "legacy" })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use("jose-elias-alvarez/null-ls.nvim")
     use("williamboman/mason.nvim")
