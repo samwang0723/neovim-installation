@@ -5,6 +5,7 @@ require("colorscheme")
 require("null_ls-config")
 require("mason-config")
 require("nvim-notify-config")
+require("neo-ai-config")
 
 local sc_status_ok, smartcolumn = pcall(require, "smartcolumn")
 if sc_status_ok then
@@ -253,6 +254,11 @@ return require("packer").startup({
     })
 
     use({ "towolf/vim-helm" })
+    use({ "MunifTanjim/nui.nvim" })
+    use({
+      "Bryley/neoai.nvim",
+      config = "require('neo-ai-config')",
+    })
   end,
   config = {
     display = {
