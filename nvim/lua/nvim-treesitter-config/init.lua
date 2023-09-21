@@ -52,3 +52,7 @@ treesitter.setup({
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 vim.wo.foldlevel = 99
+vim.treesitter.language.register("markdown", "neoai-output")
+vim.o.conceallevel = 1
+
+
