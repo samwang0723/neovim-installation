@@ -121,6 +121,10 @@ lsp.gopls.setup({
       expandWorkspaceToModule = false,
       verboseOutput = true,
       gofumpt = true,
+      directoryFilters = {
+        "-node_modules",
+        "-third_party",
+      },
     },
   },
 })
