@@ -6,6 +6,7 @@ require("null_ls-config")
 require("mason-config")
 require("nvim-notify-config")
 require("neo-ai-config")
+require("nvim-treesitter-context")
 
 local sc_status_ok, smartcolumn = pcall(require, "smartcolumn")
 if sc_status_ok then
@@ -178,6 +179,7 @@ return require("packer").startup({
     use({ "samwang0723/nvim-lspconfig", config = "require('nvim-lspconfig-config')" })
     use({ "j-hui/fidget.nvim", tag = "legacy" })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use({ "nvim-treesitter/nvim-treesitter-context" })
     use("jose-elias-alvarez/null-ls.nvim")
     use("williamboman/mason.nvim")
     -- telescope for convenient search
