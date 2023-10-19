@@ -5,7 +5,7 @@ if not null_ls_status_ok then
 end
 
 local formatting = null_ls.builtins.formatting
--- local diagnostics = null_ls.builtins.diagnostics
+local diagnostics = null_ls.builtins.diagnostics
 
 local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
 local event = "BufWritePre" -- or "BufWritePost"
@@ -48,7 +48,10 @@ null_ls.setup({
     formatting.dprint,
     formatting.sql_formatter,
     formatting.buf,
-    -- diagnostics.codespell,
+    diagnostics.eslint_d.with({ -- npm install -g eslint_d
+      diagnostics_format = "[eslint] #{m}\n(#{c})",
+    }),
+    diagnostics.fish,
     -- diagnostics.write_good,
     formatting.cbfmt,
   },
@@ -104,7 +107,9 @@ prettier.setup({
   debug = false,
   filetypes = {
     "javascript",
+    "javascriptreact",
     "typescript",
+    "typescriptreact",
     "css",
     "scss",
     "html",
@@ -113,6 +118,7 @@ prettier.setup({
     "markdown",
     "go",
     "ruby",
+    "less",
   },
   bin = "prettier",
   --args = { "--config", vim.env.HOME .. "/.prettierrc.yml", "-" },
