@@ -261,6 +261,9 @@ return require("packer").startup({
       "Bryley/neoai.nvim",
       config = "require('neo-ai-config')",
     })
+    -- rust configuration
+    use({ "mfussenegger/nvim-dap" })
+    use({ "simrat39/rust-tools.nvim" })
   end,
   config = {
     display = {

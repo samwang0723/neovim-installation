@@ -305,3 +305,12 @@ lsp.yamlls.setup({
   },
   on_attach = on_attach,
 })
+
+-- This plugin automatically sets up nvim-lspconfig for rust_analyzer for you
+-- , so don't do that manually, as it causes conflicts.
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = on_attach,
+  },
+})
